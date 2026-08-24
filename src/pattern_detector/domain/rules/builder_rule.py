@@ -53,7 +53,16 @@ class BuilderPatternRule(BasePatternRule):
                 if (f"*{st.name}" in m.return_type_str or st.name in m.return_type_str)
                 and m_name not in ("Build", "Create", "New")
             ]
-            if len(chaining_methods) >= 2:
+            if len(chaining_methods) >= 4:
+                evidences.append(
+                    Evidence(
+                        description=f"Implements Fluent Builder chaining API with {len(chaining_methods)} method(s) returning *{st.name} ({', '.join(m.name for m in chaining_methods[:4])})",
+                        weight=0.65,
+                        rule_code="BUILDER_FLUENT_SETTERS",
+                        location=chaining_methods[0].location or st.location,
+                    )
+                )
+            elif len(chaining_methods) >= 2:
                 evidences.append(
                     Evidence(
                         description=f"Contains {len(chaining_methods)} fluent chaining configuration method(s) returning *{st.name} ({', '.join(m.name for m in chaining_methods[:3])})",
