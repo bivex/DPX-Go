@@ -1,0 +1,805 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "DPX-Go",
+          "semanticVersion": "0.1.0",
+          "rules": [
+            {
+              "id": "DPX-GO-FUNCTIONAL_OPTIONS",
+              "name": "functional_options",
+              "shortDescription": {
+                "text": "Go Pattern: Functional Options"
+              },
+              "fullDescription": {
+                "text": "Type 'Option' (func(*Server)) defines idiomatic Go Functional Option signature for clean struct configuration"
+              },
+              "properties": {
+                "category": "creational"
+              }
+            },
+            {
+              "id": "DPX-GO-BUILDER",
+              "name": "builder",
+              "shortDescription": {
+                "text": "Go Pattern: Builder"
+              },
+              "fullDescription": {
+                "text": "Struct 'QueryBuilder' follows Builder naming convention"
+              },
+              "properties": {
+                "category": "creational"
+              }
+            },
+            {
+              "id": "DPX-GO-FACTORY_METHOD",
+              "name": "factory_method",
+              "shortDescription": {
+                "text": "Go Pattern: Factory Method"
+              },
+              "fullDescription": {
+                "text": "Factory constructor function 'NewServer()' encapsulates instantiation of '*Server'"
+              },
+              "properties": {
+                "category": "creational"
+              }
+            },
+            {
+              "id": "DPX-GO-ABSTRACT_FACTORY",
+              "name": "abstract_factory",
+              "shortDescription": {
+                "text": "Go Pattern: Abstract Factory"
+              },
+              "fullDescription": {
+                "text": "Declares family of 2 product creation method(s) (CreateUser, CreateOrder)"
+              },
+              "properties": {
+                "category": "creational"
+              }
+            },
+            {
+              "id": "DPX-GO-SINGLETON",
+              "name": "singleton",
+              "shortDescription": {
+                "text": "Go Pattern: Singleton"
+              },
+              "fullDescription": {
+                "text": "Thread-safe Singleton accessor 'GetDatabaseInstance()' lazily initializes global instance via sync.Once (once.Do)"
+              },
+              "properties": {
+                "category": "creational"
+              }
+            },
+            {
+              "id": "DPX-GO-DECORATOR",
+              "name": "decorator",
+              "shortDescription": {
+                "text": "Go Pattern: Decorator"
+              },
+              "fullDescription": {
+                "text": "Struct 'LoggingHandlerDecorator' follows Decorator / Middleware naming convention"
+              },
+              "properties": {
+                "category": "structural"
+              }
+            },
+            {
+              "id": "DPX-GO-OBSERVER",
+              "name": "observer",
+              "shortDescription": {
+                "text": "Go Pattern: Observer"
+              },
+              "fullDescription": {
+                "text": "Struct 'EventHub' follows Observer / Event Bus naming convention"
+              },
+              "properties": {
+                "category": "behavioral"
+              }
+            },
+            {
+              "id": "DPX-GO-CHAIN_OF_RESPONSIBILITY",
+              "name": "chain_of_responsibility",
+              "shortDescription": {
+                "text": "Go Pattern: Chain Of Responsibility"
+              },
+              "fullDescription": {
+                "text": "Type 'Middleware' (func(http.Handler) http.Handler) implements Chain of Responsibility middleware pipeline wrapper"
+              },
+              "properties": {
+                "category": "behavioral"
+              }
+            },
+            {
+              "id": "DPX-GO-MEDIATOR",
+              "name": "mediator",
+              "shortDescription": {
+                "text": "Go Pattern: Mediator"
+              },
+              "fullDescription": {
+                "text": "Maintains decoupled participant registry 'listeners: map[string][]chan Event'"
+              },
+              "properties": {
+                "category": "behavioral"
+              }
+            },
+            {
+              "id": "DPX-GO-PIPELINE",
+              "name": "pipeline",
+              "shortDescription": {
+                "text": "Go Pattern: Pipeline"
+              },
+              "fullDescription": {
+                "text": "Function 'Squarer' implements idiomatic Go Pipeline stage streaming data from input channel into output channel"
+              },
+              "properties": {
+                "category": "concurrency"
+              }
+            },
+            {
+              "id": "DPX-GO-FAN_OUT_FAN_IN",
+              "name": "fan_out_fan_in",
+              "shortDescription": {
+                "text": "Go Pattern: Fan Out Fan In"
+              },
+              "fullDescription": {
+                "text": "Function 'MergeFanIn' implements Fan-In channel multiplexer using sync.WaitGroup to merge multiple concurrent streams into single output channel"
+              },
+              "properties": {
+                "category": "concurrency"
+              }
+            },
+            {
+              "id": "DPX-GO-WORKER_POOL",
+              "name": "worker_pool",
+              "shortDescription": {
+                "text": "Go Pattern: Worker Pool"
+              },
+              "fullDescription": {
+                "text": "Function 'StartWorkerPool' implements Worker Pool pattern by spawning a fixed pool of worker goroutines over a shared jobs channel"
+              },
+              "properties": {
+                "category": "concurrency"
+              }
+            },
+            {
+              "id": "DPX-GO-GENERATOR",
+              "name": "generator",
+              "shortDescription": {
+                "text": "Go Pattern: Generator"
+              },
+              "fullDescription": {
+                "text": "Function 'Generator' implements idiomatic Go Generator pattern spawning a producer goroutine and returning receive-only channel '<-chan int'"
+              },
+              "properties": {
+                "category": "concurrency"
+              }
+            },
+            {
+              "id": "DPX-GO-CONTEXT_PROPAGATION",
+              "name": "context_propagation",
+              "shortDescription": {
+                "text": "Go Pattern: Context Propagation"
+              },
+              "fullDescription": {
+                "text": "Function 'Generator' adheres to idiomatic Go context propagation passing 'ctx: context.Context' as first parameter"
+              },
+              "properties": {
+                "category": "idiom"
+              }
+            },
+            {
+              "id": "DPX-GO-SINGLE_RESPONSIBILITY",
+              "name": "single_responsibility",
+              "shortDescription": {
+                "text": "Go Pattern: Single Responsibility"
+              },
+              "fullDescription": {
+                "text": "SRP Violation (God Struct): Struct 'GodManager' has 16 methods and 13 fields, indicating mixed domain responsibilities"
+              },
+              "properties": {
+                "category": "principle"
+              }
+            },
+            {
+              "id": "DPX-GO-INTERFACE_POLLUTION",
+              "name": "interface_pollution",
+              "shortDescription": {
+                "text": "Go Pattern: Interface Pollution"
+              },
+              "fullDescription": {
+                "text": "Interface Pollution (ISP Violation): Interface 'MegaMonolithicRepository' declares 10 methods; idiomatic Go encourages small, single-purpose interfaces (1-2 methods)"
+              },
+              "properties": {
+                "category": "principle"
+              }
+            },
+            {
+              "id": "DPX-GO-DEPENDENCY_INVERSION",
+              "name": "dependency_inversion",
+              "shortDescription": {
+                "text": "Go Pattern: Dependency Inversion"
+              },
+              "fullDescription": {
+                "text": "DIP Adherence: Function 'ProcessDataStream' depends on interface abstraction(s) (ctx context.Context, r io.Reader) rather than concrete struct pointers"
+              },
+              "properties": {
+                "category": "principle"
+              }
+            },
+            {
+              "id": "DPX-GO-GOROUTINE_LEAK_RISK",
+              "name": "goroutine_leak_risk",
+              "shortDescription": {
+                "text": "Go Pattern: Goroutine Leak Risk"
+              },
+              "fullDescription": {
+                "text": "Safety Audit (Goroutine Leak Risk): Function 'LeakyBackgroundWorker' spawns an infinite goroutine loop without listening for 'ctx.Done()' cancellation or a quit channel"
+              },
+              "properties": {
+                "category": "safety"
+              }
+            },
+            {
+              "id": "DPX-GO-UNCHECKED_ERROR",
+              "name": "unchecked_error",
+              "shortDescription": {
+                "text": "Go Pattern: Unchecked Error"
+              },
+              "fullDescription": {
+                "text": "Safety Audit (Unchecked Error): Function 'BadErrorHandler' explicitly ignores returned error(s) (_ = w.Close(...); always check err != nil"
+              },
+              "properties": {
+                "category": "safety"
+              }
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "DPX-GO-FUNCTIONAL_OPTIONS",
+          "level": "note",
+          "message": {
+            "text": "Type 'Option' (func(*Server)) defines idiomatic Go Functional Option signature for clean struct configuration"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Volumes/External/Code/DPX-Go/examples/go_samples/options_server.go"
+                },
+                "region": {
+                  "startLine": 15,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-GO-BUILDER",
+          "level": "note",
+          "message": {
+            "text": "Struct 'QueryBuilder' follows Builder naming convention"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Volumes/External/Code/DPX-Go/examples/go_samples/builder_query.go"
+                },
+                "region": {
+                  "startLine": 10,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-GO-FACTORY_METHOD",
+          "level": "note",
+          "message": {
+            "text": "Factory constructor function 'NewServer()' encapsulates instantiation of '*Server'"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Volumes/External/Code/DPX-Go/examples/go_samples/options_server.go"
+                },
+                "region": {
+                  "startLine": 35,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-GO-FACTORY_METHOD",
+          "level": "note",
+          "message": {
+            "text": "Factory constructor function 'NewEventHub()' encapsulates instantiation of '*EventHub'"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Volumes/External/Code/DPX-Go/examples/go_samples/observer_hub.go"
+                },
+                "region": {
+                  "startLine": 12,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-GO-FACTORY_METHOD",
+          "level": "note",
+          "message": {
+            "text": "Factory constructor function 'NewQueryBuilder()' encapsulates instantiation of '*QueryBuilder'"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Volumes/External/Code/DPX-Go/examples/go_samples/builder_query.go"
+                },
+                "region": {
+                  "startLine": 14,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-GO-ABSTRACT_FACTORY",
+          "level": "note",
+          "message": {
+            "text": "Declares family of 2 product creation method(s) (CreateUser, CreateOrder)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Volumes/External/Code/DPX-Go/examples/go_samples/principles_and_smells.go"
+                },
+                "region": {
+                  "startLine": 9,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-GO-SINGLETON",
+          "level": "note",
+          "message": {
+            "text": "Thread-safe Singleton accessor 'GetDatabaseInstance()' lazily initializes global instance via sync.Once (once.Do)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Volumes/External/Code/DPX-Go/examples/go_samples/singleton_db.go"
+                },
+                "region": {
+                  "startLine": 16,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-GO-DECORATOR",
+          "level": "note",
+          "message": {
+            "text": "Struct 'LoggingHandlerDecorator' follows Decorator / Middleware naming convention"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Volumes/External/Code/DPX-Go/examples/go_samples/middleware_chain.go"
+                },
+                "region": {
+                  "startLine": 18,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-GO-OBSERVER",
+          "level": "note",
+          "message": {
+            "text": "Struct 'EventHub' follows Observer / Event Bus naming convention"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Volumes/External/Code/DPX-Go/examples/go_samples/observer_hub.go"
+                },
+                "region": {
+                  "startLine": 8,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-GO-CHAIN_OF_RESPONSIBILITY",
+          "level": "note",
+          "message": {
+            "text": "Type 'Middleware' (func(http.Handler) http.Handler) implements Chain of Responsibility middleware pipeline wrapper"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Volumes/External/Code/DPX-Go/examples/go_samples/middleware_chain.go"
+                },
+                "region": {
+                  "startLine": 8,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-GO-MEDIATOR",
+          "level": "note",
+          "message": {
+            "text": "Maintains decoupled participant registry 'listeners: map[string][]chan Event'"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Volumes/External/Code/DPX-Go/examples/go_samples/observer_hub.go"
+                },
+                "region": {
+                  "startLine": 8,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-GO-PIPELINE",
+          "level": "note",
+          "message": {
+            "text": "Function 'Squarer' implements idiomatic Go Pipeline stage streaming data from input channel into output channel"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go"
+                },
+                "region": {
+                  "startLine": 23,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-GO-PIPELINE",
+          "level": "note",
+          "message": {
+            "text": "Function 'MergeFanIn' implements idiomatic Go Pipeline stage streaming data from input channel into output channel"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go"
+                },
+                "region": {
+                  "startLine": 38,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-GO-FAN_OUT_FAN_IN",
+          "level": "note",
+          "message": {
+            "text": "Function 'MergeFanIn' implements Fan-In channel multiplexer using sync.WaitGroup to merge multiple concurrent streams into single output channel"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go"
+                },
+                "region": {
+                  "startLine": 38,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-GO-WORKER_POOL",
+          "level": "note",
+          "message": {
+            "text": "Function 'StartWorkerPool' implements Worker Pool pattern by spawning a fixed pool of worker goroutines over a shared jobs channel"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go"
+                },
+                "region": {
+                  "startLine": 66,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-GO-GENERATOR",
+          "level": "note",
+          "message": {
+            "text": "Function 'Generator' implements idiomatic Go Generator pattern spawning a producer goroutine and returning receive-only channel '<-chan int'"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go"
+                },
+                "region": {
+                  "startLine": 8,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-GO-CONTEXT_PROPAGATION",
+          "level": "note",
+          "message": {
+            "text": "Function 'Generator' adheres to idiomatic Go context propagation passing 'ctx: context.Context' as first parameter"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go"
+                },
+                "region": {
+                  "startLine": 8,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-GO-CONTEXT_PROPAGATION",
+          "level": "note",
+          "message": {
+            "text": "Function 'Squarer' adheres to idiomatic Go context propagation passing 'ctx: context.Context' as first parameter"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go"
+                },
+                "region": {
+                  "startLine": 23,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-GO-CONTEXT_PROPAGATION",
+          "level": "note",
+          "message": {
+            "text": "Function 'MergeFanIn' adheres to idiomatic Go context propagation passing 'ctx: context.Context' as first parameter"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go"
+                },
+                "region": {
+                  "startLine": 38,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-GO-CONTEXT_PROPAGATION",
+          "level": "note",
+          "message": {
+            "text": "Function 'StartWorkerPool' adheres to idiomatic Go context propagation passing 'ctx: context.Context' as first parameter"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go"
+                },
+                "region": {
+                  "startLine": 66,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-GO-CONTEXT_PROPAGATION",
+          "level": "note",
+          "message": {
+            "text": "Function 'Start' adheres to idiomatic Go context propagation passing 'ctx: context.Context' as first parameter"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Volumes/External/Code/DPX-Go/examples/go_samples/options_server.go"
+                },
+                "region": {
+                  "startLine": 47,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-GO-CONTEXT_PROPAGATION",
+          "level": "note",
+          "message": {
+            "text": "Function 'ProcessDataStream' adheres to idiomatic Go context propagation passing 'ctx: context.Context' as first parameter"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Volumes/External/Code/DPX-Go/examples/go_samples/principles_and_smells.go"
+                },
+                "region": {
+                  "startLine": 57,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-GO-SINGLE_RESPONSIBILITY",
+          "level": "error",
+          "message": {
+            "text": "SRP Violation (God Struct): Struct 'GodManager' has 16 methods and 13 fields, indicating mixed domain responsibilities"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Volumes/External/Code/DPX-Go/examples/go_samples/principles_and_smells.go"
+                },
+                "region": {
+                  "startLine": 23,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-GO-INTERFACE_POLLUTION",
+          "level": "error",
+          "message": {
+            "text": "Interface Pollution (ISP Violation): Interface 'MegaMonolithicRepository' declares 10 methods; idiomatic Go encourages small, single-purpose interfaces (1-2 methods)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Volumes/External/Code/DPX-Go/examples/go_samples/principles_and_smells.go"
+                },
+                "region": {
+                  "startLine": 9,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-GO-DEPENDENCY_INVERSION",
+          "level": "error",
+          "message": {
+            "text": "DIP Adherence: Function 'ProcessDataStream' depends on interface abstraction(s) (ctx context.Context, r io.Reader) rather than concrete struct pointers"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Volumes/External/Code/DPX-Go/examples/go_samples/principles_and_smells.go"
+                },
+                "region": {
+                  "startLine": 57,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-GO-GOROUTINE_LEAK_RISK",
+          "level": "error",
+          "message": {
+            "text": "Safety Audit (Goroutine Leak Risk): Function 'LeakyBackgroundWorker' spawns an infinite goroutine loop without listening for 'ctx.Done()' cancellation or a quit channel"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Volumes/External/Code/DPX-Go/examples/go_samples/principles_and_smells.go"
+                },
+                "region": {
+                  "startLine": 62,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-GO-UNCHECKED_ERROR",
+          "level": "error",
+          "message": {
+            "text": "Safety Audit (Unchecked Error): Function 'BadErrorHandler' explicitly ignores returned error(s) (_ = w.Close(...); always check err != nil"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Volumes/External/Code/DPX-Go/examples/go_samples/principles_and_smells.go"
+                },
+                "region": {
+                  "startLine": 71,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,644 @@
+{
+  "project_path": "/Volumes/External/Code/DPX-Go/examples/go_samples",
+  "scanned_files_count": 7,
+  "total_detections_count": 27,
+  "elapsed_seconds": 0.002,
+  "summary_by_category": {
+    "creational": 7,
+    "structural": 1,
+    "behavioral": 3,
+    "concurrency": 5,
+    "idiom": 6,
+    "principle": 3,
+    "safety": 2
+  },
+  "summary_by_confidence_level": {
+    "low": 0,
+    "medium": 4,
+    "high": 16,
+    "very_high": 7
+  },
+  "detections": [
+    {
+      "pattern_type": "functional_options",
+      "pattern_category": "creational",
+      "target_name": "Option",
+      "target_kind": "functional_option_type",
+      "confidence": {
+        "score": 0.89,
+        "level": "very_high",
+        "percentage": "89%"
+      },
+      "primary_location": "/Volumes/External/Code/DPX-Go/examples/go_samples/options_server.go:15:1",
+      "evidences": [
+        {
+          "description": "Type 'Option' (func(*Server)) defines idiomatic Go Functional Option signature for clean struct configuration",
+          "weight": 0.6,
+          "rule_code": "FUNCTIONAL_OPTION_TYPE_DEF",
+          "location": "/Volumes/External/Code/DPX-Go/examples/go_samples/options_server.go:15:1"
+        },
+        {
+          "description": "Provides 3 option generator function(s) (WithPort, WithTimeout, WithTLS)",
+          "weight": 0.5,
+          "rule_code": "FUNCTIONAL_OPTION_WITH_FUNCS",
+          "location": "/Volumes/External/Code/DPX-Go/examples/go_samples/options_server.go:17:1"
+        },
+        {
+          "description": "Constructor 'NewServer' accepts variadic functional options (opts ...Option)",
+          "weight": 0.45,
+          "rule_code": "FUNCTIONAL_OPTION_CONSTRUCTOR",
+          "location": "/Volumes/External/Code/DPX-Go/examples/go_samples/options_server.go:35:1"
+        }
+      ],
+      "metadata": {}
+    },
+    {
+      "pattern_type": "builder",
+      "pattern_category": "creational",
+      "target_name": "QueryBuilder",
+      "target_kind": "builder_struct",
+      "confidence": {
+        "score": 0.8185,
+        "level": "high",
+        "percentage": "81%"
+      },
+      "primary_location": "/Volumes/External/Code/DPX-Go/examples/go_samples/builder_query.go:10:1",
+      "evidences": [
+        {
+          "description": "Struct 'QueryBuilder' follows Builder naming convention",
+          "weight": 0.4,
+          "rule_code": "BUILDER_NAMING",
+          "location": "/Volumes/External/Code/DPX-Go/examples/go_samples/builder_query.go:10:1"
+        },
+        {
+          "description": "Provides terminal construction method 'Build()' returning built instance",
+          "weight": 0.45,
+          "rule_code": "BUILDER_TERMINAL_METHOD",
+          "location": "/Volumes/External/Code/DPX-Go/examples/go_samples/builder_query.go:35:1"
+        },
+        {
+          "description": "Contains 3 fluent chaining configuration method(s) returning *QueryBuilder (Select, Where, Limit)",
+          "weight": 0.45,
+          "rule_code": "BUILDER_FLUENT_SETTERS",
+          "location": "/Volumes/External/Code/DPX-Go/examples/go_samples/builder_query.go:20:1"
+        }
+      ],
+      "metadata": {}
+    },
+    {
+      "pattern_type": "factory_method",
+      "pattern_category": "creational",
+      "target_name": "NewServer",
+      "target_kind": "factory_function",
+      "confidence": {
+        "score": 0.755,
+        "level": "high",
+        "percentage": "75%"
+      },
+      "primary_location": "/Volumes/External/Code/DPX-Go/examples/go_samples/options_server.go:35:1",
+      "evidences": [
+        {
+          "description": "Factory constructor function 'NewServer()' encapsulates instantiation of '*Server'",
+          "weight": 0.65,
+          "rule_code": "FACTORY_METHOD_CONSTRUCTOR",
+          "location": "/Volumes/External/Code/DPX-Go/examples/go_samples/options_server.go:35:1"
+        },
+        {
+          "description": "Encapsulates parameterized construction across 2 input parameter(s)",
+          "weight": 0.3,
+          "rule_code": "FACTORY_METHOD_PARAMETERIZED",
+          "location": "/Volumes/External/Code/DPX-Go/examples/go_samples/options_server.go:35:1"
+        }
+      ],
+      "metadata": {}
+    },
+    {
+      "pattern_type": "factory_method",
+      "pattern_category": "creational",
+      "target_name": "NewEventHub",
+      "target_kind": "factory_function",
+      "confidence": {
+        "score": 0.65,
+        "level": "medium",
+        "percentage": "65%"
+      },
+      "primary_location": "/Volumes/External/Code/DPX-Go/examples/go_samples/observer_hub.go:12:1",
+      "evidences": [
+        {
+          "description": "Factory constructor function 'NewEventHub()' encapsulates instantiation of '*EventHub'",
+          "weight": 0.65,
+          "rule_code": "FACTORY_METHOD_CONSTRUCTOR",
+          "location": "/Volumes/External/Code/DPX-Go/examples/go_samples/observer_hub.go:12:1"
+        }
+      ],
+      "metadata": {}
+    },
+    {
+      "pattern_type": "factory_method",
+      "pattern_category": "creational",
+      "target_name": "NewQueryBuilder",
+      "target_kind": "factory_function",
+      "confidence": {
+        "score": 0.755,
+        "level": "high",
+        "percentage": "75%"
+      },
+      "primary_location": "/Volumes/External/Code/DPX-Go/examples/go_samples/builder_query.go:14:1",
+      "evidences": [
+        {
+          "description": "Factory constructor function 'NewQueryBuilder()' encapsulates instantiation of '*QueryBuilder'",
+          "weight": 0.65,
+          "rule_code": "FACTORY_METHOD_CONSTRUCTOR",
+          "location": "/Volumes/External/Code/DPX-Go/examples/go_samples/builder_query.go:14:1"
+        },
+        {
+          "description": "Encapsulates parameterized construction across 1 input parameter(s)",
+          "weight": 0.3,
+          "rule_code": "FACTORY_METHOD_PARAMETERIZED",
+          "location": "/Volumes/External/Code/DPX-Go/examples/go_samples/builder_query.go:14:1"
+        }
+      ],
+      "metadata": {}
+    },
+    {
+      "pattern_type": "abstract_factory",
+      "pattern_category": "creational",
+      "target_name": "MegaMonolithicRepository",
+      "target_kind": "abstract_factory_interface",
+      "confidence": {
+        "score": 0.55,
+        "level": "medium",
+        "percentage": "55%"
+      },
+      "primary_location": "/Volumes/External/Code/DPX-Go/examples/go_samples/principles_and_smells.go:9:1",
+      "evidences": [
+        {
+          "description": "Declares family of 2 product creation method(s) (CreateUser, CreateOrder)",
+          "weight": 0.55,
+          "rule_code": "ABSTRACT_FACTORY_METHODS",
+          "location": "/Volumes/External/Code/DPX-Go/examples/go_samples/principles_and_smells.go:9:1"
+        }
+      ],
+      "metadata": {}
+    },
+    {
+      "pattern_type": "singleton",
+      "pattern_category": "creational",
+      "target_name": "GetDatabaseInstance",
+      "target_kind": "singleton_accessor",
+      "confidence": {
+        "score": 0.85,
+        "level": "very_high",
+        "percentage": "85%"
+      },
+      "primary_location": "/Volumes/External/Code/DPX-Go/examples/go_samples/singleton_db.go:16:1",
+      "evidences": [
+        {
+          "description": "Thread-safe Singleton accessor 'GetDatabaseInstance()' lazily initializes global instance via sync.Once (once.Do)",
+          "weight": 0.85,
+          "rule_code": "SINGLETON_SYNC_ONCE",
+          "location": "/Volumes/External/Code/DPX-Go/examples/go_samples/singleton_db.go:16:1"
+        }
+      ],
+      "metadata": {}
+    },
+    {
+      "pattern_type": "decorator",
+      "pattern_category": "structural",
+      "target_name": "LoggingHandlerDecorator",
+      "target_kind": "decorator_struct",
+      "confidence": {
+        "score": 0.675,
+        "level": "medium",
+        "percentage": "67%"
+      },
+      "primary_location": "/Volumes/External/Code/DPX-Go/examples/go_samples/middleware_chain.go:18:1",
+      "evidences": [
+        {
+          "description": "Struct 'LoggingHandlerDecorator' follows Decorator / Middleware naming convention",
+          "weight": 0.35,
+          "rule_code": "DECORATOR_NAMING",
+          "location": "/Volumes/External/Code/DPX-Go/examples/go_samples/middleware_chain.go:18:1"
+        },
+        {
+          "description": "Wraps inner component 'next: http.Handler' to decorate behavior",
+          "weight": 0.5,
+          "rule_code": "DECORATOR_WRAPS_COMPONENT",
+          "location": "/Volumes/External/Code/DPX-Go/examples/go_samples/middleware_chain.go:18:1"
+        }
+      ],
+      "metadata": {}
+    },
+    {
+      "pattern_type": "observer",
+      "pattern_category": "behavioral",
+      "target_name": "EventHub",
+      "target_kind": "observer_struct",
+      "confidence": {
+        "score": 0.857,
+        "level": "very_high",
+        "percentage": "85%"
+      },
+      "primary_location": "/Volumes/External/Code/DPX-Go/examples/go_samples/observer_hub.go:8:1",
+      "evidences": [
+        {
+          "description": "Struct 'EventHub' follows Observer / Event Bus naming convention",
+          "weight": 0.35,
+          "rule_code": "OBSERVER_NAMING",
+          "location": "/Volumes/External/Code/DPX-Go/examples/go_samples/observer_hub.go:8:1"
+        },
+        {
+          "description": "Maintains multi-subscriber dispatch channels/listeners 'listeners: map[string][]chan Event'",
+          "weight": 0.6,
+          "rule_code": "OBSERVER_LISTENER_CHANNELS",
+          "location": "/Volumes/External/Code/DPX-Go/examples/go_samples/observer_hub.go:8:1"
+        },
+        {
+          "description": "Provides observer subscription/broadcast method(s) (Subscribe, Publish)",
+          "weight": 0.45,
+          "rule_code": "OBSERVER_DISPATCH_METHODS",
+          "location": "/Volumes/External/Code/DPX-Go/examples/go_samples/observer_hub.go:18:1"
+        }
+      ],
+      "metadata": {}
+    },
+    {
+      "pattern_type": "chain_of_responsibility",
+      "pattern_category": "behavioral",
+      "target_name": "Middleware",
+      "target_kind": "middleware_type",
+      "confidence": {
+        "score": 0.75,
+        "level": "high",
+        "percentage": "75%"
+      },
+      "primary_location": "/Volumes/External/Code/DPX-Go/examples/go_samples/middleware_chain.go:8:1",
+      "evidences": [
+        {
+          "description": "Type 'Middleware' (func(http.Handler) http.Handler) implements Chain of Responsibility middleware pipeline wrapper",
+          "weight": 0.75,
+          "rule_code": "CHAIN_OF_RESPONSIBILITY_MIDDLEWARE_TYPE",
+          "location": "/Volumes/External/Code/DPX-Go/examples/go_samples/middleware_chain.go:8:1"
+        }
+      ],
+      "metadata": {}
+    },
+    {
+      "pattern_type": "mediator",
+      "pattern_category": "behavioral",
+      "target_name": "EventHub",
+      "target_kind": "mediator_struct",
+      "confidence": {
+        "score": 0.55,
+        "level": "medium",
+        "percentage": "55%"
+      },
+      "primary_location": "/Volumes/External/Code/DPX-Go/examples/go_samples/observer_hub.go:8:1",
+      "evidences": [
+        {
+          "description": "Maintains decoupled participant registry 'listeners: map[string][]chan Event'",
+          "weight": 0.55,
+          "rule_code": "MEDIATOR_PARTICIPANTS_MAP",
+          "location": "/Volumes/External/Code/DPX-Go/examples/go_samples/observer_hub.go:8:1"
+        }
+      ],
+      "metadata": {}
+    },
+    {
+      "pattern_type": "pipeline",
+      "pattern_category": "concurrency",
+      "target_name": "Squarer",
+      "target_kind": "pipeline_stage_function",
+      "confidence": {
+        "score": 0.85,
+        "level": "very_high",
+        "percentage": "85%"
+      },
+      "primary_location": "/Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go:23:1",
+      "evidences": [
+        {
+          "description": "Function 'Squarer' implements idiomatic Go Pipeline stage streaming data from input channel into output channel",
+          "weight": 0.85,
+          "rule_code": "PIPELINE_CHANNEL_STAGE",
+          "location": "/Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go:23:1"
+        }
+      ],
+      "metadata": {}
+    },
+    {
+      "pattern_type": "pipeline",
+      "pattern_category": "concurrency",
+      "target_name": "MergeFanIn",
+      "target_kind": "pipeline_stage_function",
+      "confidence": {
+        "score": 0.85,
+        "level": "very_high",
+        "percentage": "85%"
+      },
+      "primary_location": "/Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go:38:1",
+      "evidences": [
+        {
+          "description": "Function 'MergeFanIn' implements idiomatic Go Pipeline stage streaming data from input channel into output channel",
+          "weight": 0.85,
+          "rule_code": "PIPELINE_CHANNEL_STAGE",
+          "location": "/Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go:38:1"
+        }
+      ],
+      "metadata": {}
+    },
+    {
+      "pattern_type": "fan_out_fan_in",
+      "pattern_category": "concurrency",
+      "target_name": "MergeFanIn",
+      "target_kind": "fan_in_function",
+      "confidence": {
+        "score": 0.85,
+        "level": "very_high",
+        "percentage": "85%"
+      },
+      "primary_location": "/Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go:38:1",
+      "evidences": [
+        {
+          "description": "Function 'MergeFanIn' implements Fan-In channel multiplexer using sync.WaitGroup to merge multiple concurrent streams into single output channel",
+          "weight": 0.85,
+          "rule_code": "FAN_IN_CHANNEL_MERGE",
+          "location": "/Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go:38:1"
+        }
+      ],
+      "metadata": {}
+    },
+    {
+      "pattern_type": "worker_pool",
+      "pattern_category": "concurrency",
+      "target_name": "StartWorkerPool",
+      "target_kind": "worker_pool_function",
+      "confidence": {
+        "score": 0.8,
+        "level": "high",
+        "percentage": "80%"
+      },
+      "primary_location": "/Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go:66:1",
+      "evidences": [
+        {
+          "description": "Function 'StartWorkerPool' implements Worker Pool pattern by spawning a fixed pool of worker goroutines over a shared jobs channel",
+          "weight": 0.8,
+          "rule_code": "WORKER_POOL_SPAWNER",
+          "location": "/Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go:66:1"
+        }
+      ],
+      "metadata": {}
+    },
+    {
+      "pattern_type": "generator",
+      "pattern_category": "concurrency",
+      "target_name": "Generator",
+      "target_kind": "generator_function",
+      "confidence": {
+        "score": 0.8,
+        "level": "high",
+        "percentage": "80%"
+      },
+      "primary_location": "/Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go:8:1",
+      "evidences": [
+        {
+          "description": "Function 'Generator' implements idiomatic Go Generator pattern spawning a producer goroutine and returning receive-only channel '<-chan int'",
+          "weight": 0.8,
+          "rule_code": "GENERATOR_PRODUCER_GOROUTINE",
+          "location": "/Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go:8:1"
+        }
+      ],
+      "metadata": {}
+    },
+    {
+      "pattern_type": "context_propagation",
+      "pattern_category": "idiom",
+      "target_name": "Generator",
+      "target_kind": "function",
+      "confidence": {
+        "score": 0.7,
+        "level": "high",
+        "percentage": "70%"
+      },
+      "primary_location": "/Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go:8:1",
+      "evidences": [
+        {
+          "description": "Function 'Generator' adheres to idiomatic Go context propagation passing 'ctx: context.Context' as first parameter",
+          "weight": 0.7,
+          "rule_code": "CONTEXT_FIRST_PARAM",
+          "location": "/Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go:8:1"
+        }
+      ],
+      "metadata": {}
+    },
+    {
+      "pattern_type": "context_propagation",
+      "pattern_category": "idiom",
+      "target_name": "Squarer",
+      "target_kind": "function",
+      "confidence": {
+        "score": 0.7,
+        "level": "high",
+        "percentage": "70%"
+      },
+      "primary_location": "/Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go:23:1",
+      "evidences": [
+        {
+          "description": "Function 'Squarer' adheres to idiomatic Go context propagation passing 'ctx: context.Context' as first parameter",
+          "weight": 0.7,
+          "rule_code": "CONTEXT_FIRST_PARAM",
+          "location": "/Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go:23:1"
+        }
+      ],
+      "metadata": {}
+    },
+    {
+      "pattern_type": "context_propagation",
+      "pattern_category": "idiom",
+      "target_name": "MergeFanIn",
+      "target_kind": "function",
+      "confidence": {
+        "score": 0.7,
+        "level": "high",
+        "percentage": "70%"
+      },
+      "primary_location": "/Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go:38:1",
+      "evidences": [
+        {
+          "description": "Function 'MergeFanIn' adheres to idiomatic Go context propagation passing 'ctx: context.Context' as first parameter",
+          "weight": 0.7,
+          "rule_code": "CONTEXT_FIRST_PARAM",
+          "location": "/Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go:38:1"
+        }
+      ],
+      "metadata": {}
+    },
+    {
+      "pattern_type": "context_propagation",
+      "pattern_category": "idiom",
+      "target_name": "StartWorkerPool",
+      "target_kind": "function",
+      "confidence": {
+        "score": 0.7,
+        "level": "high",
+        "percentage": "70%"
+      },
+      "primary_location": "/Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go:66:1",
+      "evidences": [
+        {
+          "description": "Function 'StartWorkerPool' adheres to idiomatic Go context propagation passing 'ctx: context.Context' as first parameter",
+          "weight": 0.7,
+          "rule_code": "CONTEXT_FIRST_PARAM",
+          "location": "/Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go:66:1"
+        }
+      ],
+      "metadata": {}
+    },
+    {
+      "pattern_type": "context_propagation",
+      "pattern_category": "idiom",
+      "target_name": "Start",
+      "target_kind": "function",
+      "confidence": {
+        "score": 0.7,
+        "level": "high",
+        "percentage": "70%"
+      },
+      "primary_location": "/Volumes/External/Code/DPX-Go/examples/go_samples/options_server.go:47:1",
+      "evidences": [
+        {
+          "description": "Function 'Start' adheres to idiomatic Go context propagation passing 'ctx: context.Context' as first parameter",
+          "weight": 0.7,
+          "rule_code": "CONTEXT_FIRST_PARAM",
+          "location": "/Volumes/External/Code/DPX-Go/examples/go_samples/options_server.go:47:1"
+        }
+      ],
+      "metadata": {}
+    },
+    {
+      "pattern_type": "context_propagation",
+      "pattern_category": "idiom",
+      "target_name": "ProcessDataStream",
+      "target_kind": "function",
+      "confidence": {
+        "score": 0.7,
+        "level": "high",
+        "percentage": "70%"
+      },
+      "primary_location": "/Volumes/External/Code/DPX-Go/examples/go_samples/principles_and_smells.go:57:1",
+      "evidences": [
+        {
+          "description": "Function 'ProcessDataStream' adheres to idiomatic Go context propagation passing 'ctx: context.Context' as first parameter",
+          "weight": 0.7,
+          "rule_code": "CONTEXT_FIRST_PARAM",
+          "location": "/Volumes/External/Code/DPX-Go/examples/go_samples/principles_and_smells.go:57:1"
+        }
+      ],
+      "metadata": {}
+    },
+    {
+      "pattern_type": "single_responsibility",
+      "pattern_category": "principle",
+      "target_name": "GodManager",
+      "target_kind": "god_struct",
+      "confidence": {
+        "score": 0.85,
+        "level": "very_high",
+        "percentage": "85%"
+      },
+      "primary_location": "/Volumes/External/Code/DPX-Go/examples/go_samples/principles_and_smells.go:23:1",
+      "evidences": [
+        {
+          "description": "SRP Violation (God Struct): Struct 'GodManager' has 16 methods and 13 fields, indicating mixed domain responsibilities",
+          "weight": 0.85,
+          "rule_code": "SRP_GOD_STRUCT",
+          "location": "/Volumes/External/Code/DPX-Go/examples/go_samples/principles_and_smells.go:23:1"
+        }
+      ],
+      "metadata": {}
+    },
+    {
+      "pattern_type": "interface_pollution",
+      "pattern_category": "principle",
+      "target_name": "MegaMonolithicRepository",
+      "target_kind": "fat_interface",
+      "confidence": {
+        "score": 0.8,
+        "level": "high",
+        "percentage": "80%"
+      },
+      "primary_location": "/Volumes/External/Code/DPX-Go/examples/go_samples/principles_and_smells.go:9:1",
+      "evidences": [
+        {
+          "description": "Interface Pollution (ISP Violation): Interface 'MegaMonolithicRepository' declares 10 methods; idiomatic Go encourages small, single-purpose interfaces (1-2 methods)",
+          "weight": 0.8,
+          "rule_code": "INTERFACE_POLLUTION_FAT_INTERFACE",
+          "location": "/Volumes/External/Code/DPX-Go/examples/go_samples/principles_and_smells.go:9:1"
+        }
+      ],
+      "metadata": {}
+    },
+    {
+      "pattern_type": "dependency_inversion",
+      "pattern_category": "principle",
+      "target_name": "ProcessDataStream",
+      "target_kind": "function",
+      "confidence": {
+        "score": 0.75,
+        "level": "high",
+        "percentage": "75%"
+      },
+      "primary_location": "/Volumes/External/Code/DPX-Go/examples/go_samples/principles_and_smells.go:57:1",
+      "evidences": [
+        {
+          "description": "DIP Adherence: Function 'ProcessDataStream' depends on interface abstraction(s) (ctx context.Context, r io.Reader) rather than concrete struct pointers",
+          "weight": 0.75,
+          "rule_code": "DIP_INTERFACE_PARAMETER",
+          "location": "/Volumes/External/Code/DPX-Go/examples/go_samples/principles_and_smells.go:57:1"
+        }
+      ],
+      "metadata": {}
+    },
+    {
+      "pattern_type": "goroutine_leak_risk",
+      "pattern_category": "safety",
+      "target_name": "LeakyBackgroundWorker",
+      "target_kind": "goroutine_leak",
+      "confidence": {
+        "score": 0.8,
+        "level": "high",
+        "percentage": "80%"
+      },
+      "primary_location": "/Volumes/External/Code/DPX-Go/examples/go_samples/principles_and_smells.go:62:1",
+      "evidences": [
+        {
+          "description": "Safety Audit (Goroutine Leak Risk): Function 'LeakyBackgroundWorker' spawns an infinite goroutine loop without listening for 'ctx.Done()' cancellation or a quit channel",
+          "weight": 0.8,
+          "rule_code": "GOROUTINE_LEAK_RISK",
+          "location": "/Volumes/External/Code/DPX-Go/examples/go_samples/principles_and_smells.go:62:1"
+        }
+      ],
+      "metadata": {}
+    },
+    {
+      "pattern_type": "unchecked_error",
+      "pattern_category": "safety",
+      "target_name": "BadErrorHandler",
+      "target_kind": "unchecked_error",
+      "confidence": {
+        "score": 0.75,
+        "level": "high",
+        "percentage": "75%"
+      },
+      "primary_location": "/Volumes/External/Code/DPX-Go/examples/go_samples/principles_and_smells.go:71:1",
+      "evidences": [
+        {
+          "description": "Safety Audit (Unchecked Error): Function 'BadErrorHandler' explicitly ignores returned error(s) (_ = w.Close(...); always check err != nil",
+          "weight": 0.75,
+          "rule_code": "UNCHECKED_ERROR_RETURN",
+          "location": "/Volumes/External/Code/DPX-Go/examples/go_samples/principles_and_smells.go:71:1"
+        }
+      ],
+      "metadata": {}
+    }
+  ]
+}

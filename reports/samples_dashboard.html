@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐹 DPX-Go: Architecture & Pattern Dashboard - go_samples</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.9.3/semantic.min.css">
+    <style>
+        :root {
+            --bg-main: #0b0f19;
+            --bg-card: #131b2e;
+            --border-color: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+        }
+        body {
+            background-color: var(--bg-main) !important;
+            color: var(--text-primary) !important;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            padding: 30px 15px;
+        }
+        .ui.container {
+            max-width: 1200px !important;
+        }
+        .header-box {
+            background: linear-gradient(135deg, #064e3b 0%, #0f172a 100%);
+            border: 1px solid #047857;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+        }
+        .kpi-card {
+            background: var(--bg-card) !important;
+            border: 1px solid var(--border-color) !important;
+            border-radius: 10px !important;
+            padding: 16px !important;
+            text-align: center;
+        }
+        .pattern-card {
+            background: var(--bg-card) !important;
+            border: 1px solid var(--border-color) !important;
+            border-radius: 10px !important;
+            margin-bottom: 16px !important;
+            padding: 20px !important;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .pattern-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            border-color: #10b981 !important;
+        }
+        .evidence-box {
+            background: #090d16;
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin-top: 12px;
+            border-left: 3px solid #10b981;
+            font-size: 13px;
+        }
+        .code-pill {
+            background: #1e293b;
+            color: #38bdf8;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="ui container">
+        <!-- Header -->
+        <div class="header-box">
+            <div class="ui grid stackable middle aligned">
+                <div class="ten wide column">
+                    <h1 class="ui header inverted" style="margin: 0; font-size: 28px;">
+                        🐹 DPX-Go Pattern Scanner & Architecture Dashboard
+                        <div class="sub header" style="color: #6ee7b7; margin-top: 6px;">
+                            Static Analysis, GoF Patterns, Concurrency & Clean Architecture for <strong>go_samples</strong>
+                        </div>
+                    </h1>
+                </div>
+                <div class="six wide column right aligned">
+                    <button id="copyLlmBtn" class="ui teal button" onclick="copyArchMapForLlm()">
+                        <i class="copy icon"></i> Copy Architecture Map for LLM
+                    </button>
+                    <textarea id="llmArchMapRaw" style="display:none;"># 🐹 DPX-Go: Codebase Architecture Map &amp; Refactoring Analysis
+
+## 📌 Project Overview
+- **Target Project:** `go_samples`
+- **Files Scanned:** `7`
+- **Total Architecture Findings:** `27`
+- **⚠️ Violations / Smells:** `4`
+- **🔷 Patterns &amp; Concurrency:** `22`
+- **✅ Clean Adherences:** `1`
+
+---
+
+## 🎯 Task for AI / LLM Go Architect
+&gt; **Prompt Instructions:**
+&gt; 1. **Analyze Modularity &amp; Interfaces:** Review small interface abstractions (io.Reader/Writer style), struct embeddings, and high-coupling packages.
+&gt; 2. **Review Concurrency &amp; Safety:** Audit channel pipelines, worker pools, goroutine leaks, and unchecked errors.
+&gt; 3. **Propose Idiomatic Go Refactorings:** Suggest Functional Options, Pipeline, or Onion Middleware architectures with concrete Go code signatures.
+&gt; 4. **SOLID Improvements:** Address interface pollution and God structs cleanly without unnecessary abstraction layers.
+
+---
+
+## 🔷 Active Design Patterns &amp; Go Concurrency (22 instances)
+### Pattern: `ABSTRACT_FACTORY` (1 instances)
+- **MegaMonolithicRepository** (abstract_factory_interface, confidence 55%) in `/Volumes/External/Code/DPX-Go/examples/go_samples/principles_and_smells.go:9`
+  - *Summary:* Declares family of 2 product creation method(s) (CreateUser, CreateOrder)
+### Pattern: `BUILDER` (1 instances)
+- **QueryBuilder** (builder_struct, confidence 81%) in `/Volumes/External/Code/DPX-Go/examples/go_samples/builder_query.go:10`
+  - *Summary:* Struct &#x27;QueryBuilder&#x27; follows Builder naming convention
+### Pattern: `CHAIN_OF_RESPONSIBILITY` (1 instances)
+- **Middleware** (middleware_type, confidence 75%) in `/Volumes/External/Code/DPX-Go/examples/go_samples/middleware_chain.go:8`
+  - *Summary:* Type &#x27;Middleware&#x27; (func(http.Handler) http.Handler) implements Chain of Responsibility middleware pipeline wrapper
+### Pattern: `CONTEXT_PROPAGATION` (6 instances)
+- **Generator** (function, confidence 70%) in `/Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go:8`
+  - *Summary:* Function &#x27;Generator&#x27; adheres to idiomatic Go context propagation passing &#x27;ctx: context.Context&#x27; as first parameter
+- **Squarer** (function, confidence 70%) in `/Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go:23`
+  - *Summary:* Function &#x27;Squarer&#x27; adheres to idiomatic Go context propagation passing &#x27;ctx: context.Context&#x27; as first parameter
+- **MergeFanIn** (function, confidence 70%) in `/Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go:38`
+  - *Summary:* Function &#x27;MergeFanIn&#x27; adheres to idiomatic Go context propagation passing &#x27;ctx: context.Context&#x27; as first parameter
+- **StartWorkerPool** (function, confidence 70%) in `/Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go:66`
+  - *Summary:* Function &#x27;StartWorkerPool&#x27; adheres to idiomatic Go context propagation passing &#x27;ctx: context.Context&#x27; as first parameter
+- **Start** (function, confidence 70%) in `/Volumes/External/Code/DPX-Go/examples/go_samples/options_server.go:47`
+  - *Summary:* Function &#x27;Start&#x27; adheres to idiomatic Go context propagation passing &#x27;ctx: context.Context&#x27; as first parameter
+- **ProcessDataStream** (function, confidence 70%) in `/Volumes/External/Code/DPX-Go/examples/go_samples/principles_and_smells.go:57`
+  - *Summary:* Function &#x27;ProcessDataStream&#x27; adheres to idiomatic Go context propagation passing &#x27;ctx: context.Context&#x27; as first parameter
+### Pattern: `DECORATOR` (1 instances)
+- **LoggingHandlerDecorator** (decorator_struct, confidence 67%) in `/Volumes/External/Code/DPX-Go/examples/go_samples/middleware_chain.go:18`
+  - *Summary:* Struct &#x27;LoggingHandlerDecorator&#x27; follows Decorator / Middleware naming convention
+### Pattern: `FACTORY_METHOD` (3 instances)
+- **NewServer** (factory_function, confidence 75%) in `/Volumes/External/Code/DPX-Go/examples/go_samples/options_server.go:35`
+  - *Summary:* Factory constructor function &#x27;NewServer()&#x27; encapsulates instantiation of &#x27;*Server&#x27;
+- **NewEventHub** (factory_function, confidence 65%) in `/Volumes/External/Code/DPX-Go/examples/go_samples/observer_hub.go:12`
+  - *Summary:* Factory constructor function &#x27;NewEventHub()&#x27; encapsulates instantiation of &#x27;*EventHub&#x27;
+- **NewQueryBuilder** (factory_function, confidence 75%) in `/Volumes/External/Code/DPX-Go/examples/go_samples/builder_query.go:14`
+  - *Summary:* Factory constructor function &#x27;NewQueryBuilder()&#x27; encapsulates instantiation of &#x27;*QueryBuilder&#x27;
+### Pattern: `FAN_OUT_FAN_IN` (1 instances)
+- **MergeFanIn** (fan_in_function, confidence 85%) in `/Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go:38`
+  - *Summary:* Function &#x27;MergeFanIn&#x27; implements Fan-In channel multiplexer using sync.WaitGroup to merge multiple concurrent streams into single output channel
+### Pattern: `FUNCTIONAL_OPTIONS` (1 instances)
+- **Option** (functional_option_type, confidence 89%) in `/Volumes/External/Code/DPX-Go/examples/go_samples/options_server.go:15`
+  - *Summary:* Type &#x27;Option&#x27; (func(*Server)) defines idiomatic Go Functional Option signature for clean struct configuration
+### Pattern: `GENERATOR` (1 instances)
+- **Generator** (generator_function, confidence 80%) in `/Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go:8`
+  - *Summary:* Function &#x27;Generator&#x27; implements idiomatic Go Generator pattern spawning a producer goroutine and returning receive-only channel &#x27;&lt;-chan int&#x27;
+### Pattern: `MEDIATOR` (1 instances)
+- **EventHub** (mediator_struct, confidence 55%) in `/Volumes/External/Code/DPX-Go/examples/go_samples/observer_hub.go:8`
+  - *Summary:* Maintains decoupled participant registry &#x27;listeners: map[string][]chan Event&#x27;
+### Pattern: `OBSERVER` (1 instances)
+- **EventHub** (observer_struct, confidence 85%) in `/Volumes/External/Code/DPX-Go/examples/go_samples/observer_hub.go:8`
+  - *Summary:* Struct &#x27;EventHub&#x27; follows Observer / Event Bus naming convention
+### Pattern: `PIPELINE` (2 instances)
+- **Squarer** (pipeline_stage_function, confidence 85%) in `/Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go:23`
+  - *Summary:* Function &#x27;Squarer&#x27; implements idiomatic Go Pipeline stage streaming data from input channel into output channel
+- **MergeFanIn** (pipeline_stage_function, confidence 85%) in `/Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go:38`
+  - *Summary:* Function &#x27;MergeFanIn&#x27; implements idiomatic Go Pipeline stage streaming data from input channel into output channel
+### Pattern: `SINGLETON` (1 instances)
+- **GetDatabaseInstance** (singleton_accessor, confidence 85%) in `/Volumes/External/Code/DPX-Go/examples/go_samples/singleton_db.go:16`
+  - *Summary:* Thread-safe Singleton accessor &#x27;GetDatabaseInstance()&#x27; lazily initializes global instance via sync.Once (once.Do)
+### Pattern: `WORKER_POOL` (1 instances)
+- **StartWorkerPool** (worker_pool_function, confidence 80%) in `/Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go:66`
+  - *Summary:* Function &#x27;StartWorkerPool&#x27; implements Worker Pool pattern by spawning a fixed pool of worker goroutines over a shared jobs channel
+
+---
+
+## ⚠️ Architectural Violations &amp; Code Smells (4 instances)
+### Violation: `GOROUTINE_LEAK_RISK` (1 occurrences)
+- **LeakyBackgroundWorker** (80%) in `/Volumes/External/Code/DPX-Go/examples/go_samples/principles_and_smells.go:62`
+  - *Risk / Smell:* Safety Audit (Goroutine Leak Risk): Function &#x27;LeakyBackgroundWorker&#x27; spawns an infinite goroutine loop without listening for &#x27;ctx.Done()&#x27; cancellation or a quit channel
+  - *Evidence:* `+80%` [GOROUTINE_LEAK_RISK] Safety Audit (Goroutine Leak Risk): Function &#x27;LeakyBackgroundWorker&#x27; spawns an infinite goroutine loop without listening for &#x27;ctx.Done()&#x27; cancellation or a quit channel
+### Violation: `INTERFACE_POLLUTION` (1 occurrences)
+- **MegaMonolithicRepository** (80%) in `/Volumes/External/Code/DPX-Go/examples/go_samples/principles_and_smells.go:9`
+  - *Risk / Smell:* Interface Pollution (ISP Violation): Interface &#x27;MegaMonolithicRepository&#x27; declares 10 methods; idiomatic Go encourages small, single-purpose interfaces (1-2 methods)
+  - *Evidence:* `+80%` [INTERFACE_POLLUTION_FAT_INTERFACE] Interface Pollution (ISP Violation): Interface &#x27;MegaMonolithicRepository&#x27; declares 10 methods; idiomatic Go encourages small, single-purpose interfaces (1-2 methods)
+### Violation: `SINGLE_RESPONSIBILITY` (1 occurrences)
+- **GodManager** (85%) in `/Volumes/External/Code/DPX-Go/examples/go_samples/principles_and_smells.go:23`
+  - *Risk / Smell:* SRP Violation (God Struct): Struct &#x27;GodManager&#x27; has 16 methods and 13 fields, indicating mixed domain responsibilities
+  - *Evidence:* `+85%` [SRP_GOD_STRUCT] SRP Violation (God Struct): Struct &#x27;GodManager&#x27; has 16 methods and 13 fields, indicating mixed domain responsibilities
+### Violation: `UNCHECKED_ERROR` (1 occurrences)
+- **BadErrorHandler** (75%) in `/Volumes/External/Code/DPX-Go/examples/go_samples/principles_and_smells.go:71`
+  - *Risk / Smell:* Safety Audit (Unchecked Error): Function &#x27;BadErrorHandler&#x27; explicitly ignores returned error(s) (_ = w.Close(...); always check err != nil
+  - *Evidence:* `+75%` [UNCHECKED_ERROR_RETURN] Safety Audit (Unchecked Error): Function &#x27;BadErrorHandler&#x27; explicitly ignores returned error(s) (_ = w.Close(...); always check err != nil
+
+---
+
+## ✅ Clean Architectural Adherences (1 instances)
+### Principle: `DEPENDENCY_INVERSION` (1 instances)
+- **ProcessDataStream** (75%) in `/Volumes/External/Code/DPX-Go/examples/go_samples/principles_and_smells.go:57` - DIP Adherence: Function &#x27;ProcessDataStream&#x27; depends on interface abstraction(s) (ctx context.Context, r io.Reader) rather than concrete struct pointers
+
+---
+
+## 🗺️ Module &amp; File Hotspots Distribution
+- **`concurrency_pipeline.go`**: 9 findings (0 violations, 9 patterns, 0 adherences)
+- **`principles_and_smells.go`**: 7 findings (4 violations, 2 patterns, 1 adherences)
+- **`options_server.go`**: 3 findings (0 violations, 3 patterns, 0 adherences)
+- **`observer_hub.go`**: 3 findings (0 violations, 3 patterns, 0 adherences)
+- **`builder_query.go`**: 2 findings (0 violations, 2 patterns, 0 adherences)
+- **`middleware_chain.go`**: 2 findings (0 violations, 2 patterns, 0 adherences)
+- **`singleton_db.go`**: 1 findings (0 violations, 1 patterns, 0 adherences)
+</textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- KPI Metrics Grid -->
+        <div class="ui grid stackable four column" style="margin-bottom: 20px;">
+            <div class="column">
+                <div class="kpi-card">
+                    <div style="font-size: 28px; font-weight: 700; color: #38bdf8;">27</div>
+                    <div style="color: #94a3b8; font-size: 13px; margin-top: 4px;">Total Findings</div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="kpi-card">
+                    <div style="font-size: 28px; font-weight: 700; color: #f87171;">4</div>
+                    <div style="color: #94a3b8; font-size: 13px; margin-top: 4px;">Violations / Smells</div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="kpi-card">
+                    <div style="font-size: 28px; font-weight: 700; color: #34d399;">22</div>
+                    <div style="color: #94a3b8; font-size: 13px; margin-top: 4px;">Patterns & Concurrency</div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="kpi-card">
+                    <div style="font-size: 28px; font-weight: 700; color: #a78bfa;">7 files</div>
+                    <div style="color: #94a3b8; font-size: 13px; margin-top: 4px;">Scan Time: 0.002s</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Category Filter Pills -->
+        <div class="ui secondary pointing menu inverted" style="border-color: #1e293b; margin-bottom: 16px; overflow-x: auto;">
+            <a class="item active cat-filter-btn" data-filter="all">
+                <i class="layer group icon"></i> All Findings
+            </a>
+            
+                    <a class="item cat-filter-btn" data-filter="creational">
+                        <i class="cubes icon" style="color: #2dd4bf;"></i>
+                        Creational Patterns
+                        <div class="ui mini teal label">7</div>
+                    </a>
+                    
+                    <a class="item cat-filter-btn" data-filter="structural">
+                        <i class="sitemap icon" style="color: #38bdf8;"></i>
+                        Structural Patterns
+                        <div class="ui mini blue label">1</div>
+                    </a>
+                    
+                    <a class="item cat-filter-btn" data-filter="behavioral">
+                        <i class="random icon" style="color: #a78bfa;"></i>
+                        Behavioral Patterns
+                        <div class="ui mini violet label">3</div>
+                    </a>
+                    
+                    <a class="item cat-filter-btn" data-filter="concurrency">
+                        <i class="sync alternate icon" style="color: #a3e635;"></i>
+                        Concurrency & Channels
+                        <div class="ui mini olive label">5</div>
+                    </a>
+                    
+                    <a class="item cat-filter-btn" data-filter="idiom">
+                        <i class="bolt icon" style="color: #fb923c;"></i>
+                        Go Idioms & Options
+                        <div class="ui mini orange label">6</div>
+                    </a>
+                    
+                    <a class="item cat-filter-btn" data-filter="principle">
+                        <i class="shield alternate icon" style="color: #f472b6;"></i>
+                        Principles & SOLID
+                        <div class="ui mini pink label">3</div>
+                    </a>
+                    
+                    <a class="item cat-filter-btn" data-filter="safety">
+                        <i class="exclamation triangle icon" style="color: #f87171;"></i>
+                        Safety & Leak Guards
+                        <div class="ui mini red label">2</div>
+                    </a>
+                    
+        </div>
+
+        <!-- Action Status Sub-Tabs Bar -->
+        <div class="ui inverted segment" style="background: #0f172a; border: 1px solid #1e293b; border-radius: 8px; margin-bottom: 16px; padding: 10px 16px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
+            <div class="ui mini inverted basic buttons" id="statusFilterGroup">
+                <button class="ui button active status-filter-btn" data-status="all">
+                    <i class="eye icon"></i> All <span class="ui mini blue label" id="statusCountAll">27</span>
+                </button>
+                <button class="ui button status-filter-btn" data-status="violation" style="color: #f87171 !important;">
+                    <i class="exclamation triangle icon"></i> ⚠️ Violations <span class="ui mini red label" id="statusCountViolation">4</span>
+                </button>
+                <button class="ui button status-filter-btn" data-status="adherence" style="color: #4ade80 !important;">
+                    <i class="check circle icon"></i> ✅ Adherences <span class="ui mini green label" id="statusCountAdherence">1</span>
+                </button>
+                <button class="ui button status-filter-btn" data-status="pattern" style="color: #38bdf8 !important;">
+                    <i class="cube icon"></i> 🔷 Patterns & Concurrency <span class="ui mini teal label" id="statusCountPattern">22</span>
+                </button>
+            </div>
+            <div>
+                <button id="principlesToggleBtn" class="ui mini inverted basic button" onclick="togglePrinciplesVisibility()" style="border-color: #059669; color: #6ee7b7; font-weight: 600;">
+                    <i class="shield alternate icon" style="color: #10b981;"></i> <span id="principlesToggleText">Hide SOLID & Principles</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="ui fluid icon inverted input" style="margin-bottom: 20px;">
+            <input type="text" id="searchInput" placeholder="🔎 Instant search by pattern name, struct/interface, package, or rule (e.g. options, pipeline, worker_pool, singleton)..." style="background: #0f172a; border: 1px solid #1e293b; color: #f8fafc; padding: 12px 16px;">
+            <i class="search icon"></i>
+        </div>
+
+        <!-- Zero Violations Alert -->
+        <div id="noViolationsAlert" class="ui positive icon message" style="display: none; background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.35); color: #86efac; margin-bottom: 20px; border-radius: 8px;">
+            <i class="check circle outline icon" style="color: #34d399;"></i>
+            <div class="content">
+                <div class="header" style="color: #34d399; font-size: 16px; font-weight: 700;">Zero Violations Found!</div>
+                <p style="color: #cbd5e1; margin-top: 4px;">All evaluated code conforms cleanly to idiomatic Go architecture and concurrency guidelines.</p>
+            </div>
+        </div>
+
+        <!-- No Matching Results Message -->
+        <div id="noResultsMessage" class="ui inverted segment" style="display: none; background: #0f172a; border: 1px solid #1e293b; text-align: center; padding: 30px; border-radius: 8px;">
+            <i class="search icon" style="font-size: 24px; color: #64748b; margin-bottom: 10px;"></i>
+            <div style="color: #94a3b8; font-size: 15px;">No findings match the selected category, action status, or search query.</div>
+        </div>
+
+        <!-- Cards Container -->
+        <div id="cardsContainer">
+            
+                <div class="pattern-card" data-category="creational" data-pattern="functional_options" data-status="pattern" data-target="option">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <span class="ui mini teal label">#1 FUNCTIONAL_OPTIONS</span>
+                            <strong style="font-size: 16px; margin-left: 8px; color: #f8fafc;">Option</strong>
+                            <span style="color: #94a3b8; font-size: 13px;">(functional_option_type)</span>
+                        </div>
+                        <div>
+                            <span class="ui mini label" style="background: rgba(45, 212, 191, 0.15); color: #2dd4bf; border: 1px solid rgba(45, 212, 191, 0.4);">
+                                89% [VERY_HIGH]
+                            </span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 10px; font-size: 13px; color: #cbd5e1;">
+                        Type &#x27;Option&#x27; (func(*Server)) defines idiomatic Go Functional Option signature for clean struct configuration
+                    </div>
+                    <div style="margin-top: 6px; font-size: 12px; color: #64748b;">
+                        <i class="map marker alternate icon"></i> /Volumes/External/Code/DPX-Go/examples/go_samples/options_server.go:15:1
+                    </div>
+                    <div class="evidence-box">
+                        <strong>Evidence Trail (3 heuristics):</strong>
+                        
+                    <div style="margin-top: 4px;">
+                        <span style="color: #10b981; font-weight: 600;">+60%</span>
+                        <span class="code-pill">[FUNCTIONAL_OPTION_TYPE_DEF]</span>
+                        Type &#x27;Option&#x27; (func(*Server)) defines idiomatic Go Functional Option signature for clean struct configuration <span class='code-pill'>/Volumes/External/Code/DPX-Go/examples/go_samples/options_server.go:15:1</span>
+                    </div>
+                    
+                    <div style="margin-top: 4px;">
+                        <span style="color: #10b981; font-weight: 600;">+50%</span>
+                        <span class="code-pill">[FUNCTIONAL_OPTION_WITH_FUNCS]</span>
+                        Provides 3 option generator function(s) (WithPort, WithTimeout, WithTLS) <span class='code-pill'>/Volumes/External/Code/DPX-Go/examples/go_samples/options_server.go:17:1</span>
+                    </div>
+                    
+                    <div style="margin-top: 4px;">
+                        <span style="color: #10b981; font-weight: 600;">+45%</span>
+                        <span class="code-pill">[FUNCTIONAL_OPTION_CONSTRUCTOR]</span>
+                        Constructor &#x27;NewServer&#x27; accepts variadic functional options (opts ...Option) <span class='code-pill'>/Volumes/External/Code/DPX-Go/examples/go_samples/options_server.go:35:1</span>
+                    </div>
+                    
+                    </div>
+                </div>
+                
+                <div class="pattern-card" data-category="creational" data-pattern="builder" data-status="pattern" data-target="querybuilder">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <span class="ui mini teal label">#2 BUILDER</span>
+                            <strong style="font-size: 16px; margin-left: 8px; color: #f8fafc;">QueryBuilder</strong>
+                            <span style="color: #94a3b8; font-size: 13px;">(builder_struct)</span>
+                        </div>
+                        <div>
+                            <span class="ui mini label" style="background: rgba(45, 212, 191, 0.15); color: #2dd4bf; border: 1px solid rgba(45, 212, 191, 0.4);">
+                                81% [HIGH]
+                            </span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 10px; font-size: 13px; color: #cbd5e1;">
+                        Struct &#x27;QueryBuilder&#x27; follows Builder naming convention
+                    </div>
+                    <div style="margin-top: 6px; font-size: 12px; color: #64748b;">
+                        <i class="map marker alternate icon"></i> /Volumes/External/Code/DPX-Go/examples/go_samples/builder_query.go:10:1
+                    </div>
+                    <div class="evidence-box">
+                        <strong>Evidence Trail (3 heuristics):</strong>
+                        
+                    <div style="margin-top: 4px;">
+                        <span style="color: #10b981; font-weight: 600;">+40%</span>
+                        <span class="code-pill">[BUILDER_NAMING]</span>
+                        Struct &#x27;QueryBuilder&#x27; follows Builder naming convention <span class='code-pill'>/Volumes/External/Code/DPX-Go/examples/go_samples/builder_query.go:10:1</span>
+                    </div>
+                    
+                    <div style="margin-top: 4px;">
+                        <span style="color: #10b981; font-weight: 600;">+45%</span>
+                        <span class="code-pill">[BUILDER_TERMINAL_METHOD]</span>
+                        Provides terminal construction method &#x27;Build()&#x27; returning built instance <span class='code-pill'>/Volumes/External/Code/DPX-Go/examples/go_samples/builder_query.go:35:1</span>
+                    </div>
+                    
+                    <div style="margin-top: 4px;">
+                        <span style="color: #10b981; font-weight: 600;">+45%</span>
+                        <span class="code-pill">[BUILDER_FLUENT_SETTERS]</span>
+                        Contains 3 fluent chaining configuration method(s) returning *QueryBuilder (Select, Where, Limit) <span class='code-pill'>/Volumes/External/Code/DPX-Go/examples/go_samples/builder_query.go:20:1</span>
+                    </div>
+                    
+                    </div>
+                </div>
+                
+                <div class="pattern-card" data-category="creational" data-pattern="factory_method" data-status="pattern" data-target="newserver">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <span class="ui mini teal label">#3 FACTORY_METHOD</span>
+                            <strong style="font-size: 16px; margin-left: 8px; color: #f8fafc;">NewServer</strong>
+                            <span style="color: #94a3b8; font-size: 13px;">(factory_function)</span>
+                        </div>
+                        <div>
+                            <span class="ui mini label" style="background: rgba(45, 212, 191, 0.15); color: #2dd4bf; border: 1px solid rgba(45, 212, 191, 0.4);">
+                                75% [HIGH]
+                            </span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 10px; font-size: 13px; color: #cbd5e1;">
+                        Factory constructor function &#x27;NewServer()&#x27; encapsulates instantiation of &#x27;*Server&#x27;
+                    </div>
+                    <div style="margin-top: 6px; font-size: 12px; color: #64748b;">
+                        <i class="map marker alternate icon"></i> /Volumes/External/Code/DPX-Go/examples/go_samples/options_server.go:35:1
+                    </div>
+                    <div class="evidence-box">
+                        <strong>Evidence Trail (2 heuristics):</strong>
+                        
+                    <div style="margin-top: 4px;">
+                        <span style="color: #10b981; font-weight: 600;">+65%</span>
+                        <span class="code-pill">[FACTORY_METHOD_CONSTRUCTOR]</span>
+                        Factory constructor function &#x27;NewServer()&#x27; encapsulates instantiation of &#x27;*Server&#x27; <span class='code-pill'>/Volumes/External/Code/DPX-Go/examples/go_samples/options_server.go:35:1</span>
+                    </div>
+                    
+                    <div style="margin-top: 4px;">
+                        <span style="color: #10b981; font-weight: 600;">+30%</span>
+                        <span class="code-pill">[FACTORY_METHOD_PARAMETERIZED]</span>
+                        Encapsulates parameterized construction across 2 input parameter(s) <span class='code-pill'>/Volumes/External/Code/DPX-Go/examples/go_samples/options_server.go:35:1</span>
+                    </div>
+                    
+                    </div>
+                </div>
+                
+                <div class="pattern-card" data-category="creational" data-pattern="factory_method" data-status="pattern" data-target="neweventhub">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <span class="ui mini teal label">#4 FACTORY_METHOD</span>
+                            <strong style="font-size: 16px; margin-left: 8px; color: #f8fafc;">NewEventHub</strong>
+                            <span style="color: #94a3b8; font-size: 13px;">(factory_function)</span>
+                        </div>
+                        <div>
+                            <span class="ui mini label" style="background: rgba(45, 212, 191, 0.15); color: #2dd4bf; border: 1px solid rgba(45, 212, 191, 0.4);">
+                                65% [MEDIUM]
+                            </span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 10px; font-size: 13px; color: #cbd5e1;">
+                        Factory constructor function &#x27;NewEventHub()&#x27; encapsulates instantiation of &#x27;*EventHub&#x27;
+                    </div>
+                    <div style="margin-top: 6px; font-size: 12px; color: #64748b;">
+                        <i class="map marker alternate icon"></i> /Volumes/External/Code/DPX-Go/examples/go_samples/observer_hub.go:12:1
+                    </div>
+                    <div class="evidence-box">
+                        <strong>Evidence Trail (1 heuristics):</strong>
+                        
+                    <div style="margin-top: 4px;">
+                        <span style="color: #10b981; font-weight: 600;">+65%</span>
+                        <span class="code-pill">[FACTORY_METHOD_CONSTRUCTOR]</span>
+                        Factory constructor function &#x27;NewEventHub()&#x27; encapsulates instantiation of &#x27;*EventHub&#x27; <span class='code-pill'>/Volumes/External/Code/DPX-Go/examples/go_samples/observer_hub.go:12:1</span>
+                    </div>
+                    
+                    </div>
+                </div>
+                
+                <div class="pattern-card" data-category="creational" data-pattern="factory_method" data-status="pattern" data-target="newquerybuilder">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <span class="ui mini teal label">#5 FACTORY_METHOD</span>
+                            <strong style="font-size: 16px; margin-left: 8px; color: #f8fafc;">NewQueryBuilder</strong>
+                            <span style="color: #94a3b8; font-size: 13px;">(factory_function)</span>
+                        </div>
+                        <div>
+                            <span class="ui mini label" style="background: rgba(45, 212, 191, 0.15); color: #2dd4bf; border: 1px solid rgba(45, 212, 191, 0.4);">
+                                75% [HIGH]
+                            </span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 10px; font-size: 13px; color: #cbd5e1;">
+                        Factory constructor function &#x27;NewQueryBuilder()&#x27; encapsulates instantiation of &#x27;*QueryBuilder&#x27;
+                    </div>
+                    <div style="margin-top: 6px; font-size: 12px; color: #64748b;">
+                        <i class="map marker alternate icon"></i> /Volumes/External/Code/DPX-Go/examples/go_samples/builder_query.go:14:1
+                    </div>
+                    <div class="evidence-box">
+                        <strong>Evidence Trail (2 heuristics):</strong>
+                        
+                    <div style="margin-top: 4px;">
+                        <span style="color: #10b981; font-weight: 600;">+65%</span>
+                        <span class="code-pill">[FACTORY_METHOD_CONSTRUCTOR]</span>
+                        Factory constructor function &#x27;NewQueryBuilder()&#x27; encapsulates instantiation of &#x27;*QueryBuilder&#x27; <span class='code-pill'>/Volumes/External/Code/DPX-Go/examples/go_samples/builder_query.go:14:1</span>
+                    </div>
+                    
+                    <div style="margin-top: 4px;">
+                        <span style="color: #10b981; font-weight: 600;">+30%</span>
+                        <span class="code-pill">[FACTORY_METHOD_PARAMETERIZED]</span>
+                        Encapsulates parameterized construction across 1 input parameter(s) <span class='code-pill'>/Volumes/External/Code/DPX-Go/examples/go_samples/builder_query.go:14:1</span>
+                    </div>
+                    
+                    </div>
+                </div>
+                
+                <div class="pattern-card" data-category="creational" data-pattern="abstract_factory" data-status="pattern" data-target="megamonolithicrepository">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <span class="ui mini teal label">#6 ABSTRACT_FACTORY</span>
+                            <strong style="font-size: 16px; margin-left: 8px; color: #f8fafc;">MegaMonolithicRepository</strong>
+                            <span style="color: #94a3b8; font-size: 13px;">(abstract_factory_interface)</span>
+                        </div>
+                        <div>
+                            <span class="ui mini label" style="background: rgba(45, 212, 191, 0.15); color: #2dd4bf; border: 1px solid rgba(45, 212, 191, 0.4);">
+                                55% [MEDIUM]
+                            </span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 10px; font-size: 13px; color: #cbd5e1;">
+                        Declares family of 2 product creation method(s) (CreateUser, CreateOrder)
+                    </div>
+                    <div style="margin-top: 6px; font-size: 12px; color: #64748b;">
+                        <i class="map marker alternate icon"></i> /Volumes/External/Code/DPX-Go/examples/go_samples/principles_and_smells.go:9:1
+                    </div>
+                    <div class="evidence-box">
+                        <strong>Evidence Trail (1 heuristics):</strong>
+                        
+                    <div style="margin-top: 4px;">
+                        <span style="color: #10b981; font-weight: 600;">+55%</span>
+                        <span class="code-pill">[ABSTRACT_FACTORY_METHODS]</span>
+                        Declares family of 2 product creation method(s) (CreateUser, CreateOrder) <span class='code-pill'>/Volumes/External/Code/DPX-Go/examples/go_samples/principles_and_smells.go:9:1</span>
+                    </div>
+                    
+                    </div>
+                </div>
+                
+                <div class="pattern-card" data-category="creational" data-pattern="singleton" data-status="pattern" data-target="getdatabaseinstance">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <span class="ui mini teal label">#7 SINGLETON</span>
+                            <strong style="font-size: 16px; margin-left: 8px; color: #f8fafc;">GetDatabaseInstance</strong>
+                            <span style="color: #94a3b8; font-size: 13px;">(singleton_accessor)</span>
+                        </div>
+                        <div>
+                            <span class="ui mini label" style="background: rgba(45, 212, 191, 0.15); color: #2dd4bf; border: 1px solid rgba(45, 212, 191, 0.4);">
+                                85% [VERY_HIGH]
+                            </span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 10px; font-size: 13px; color: #cbd5e1;">
+                        Thread-safe Singleton accessor &#x27;GetDatabaseInstance()&#x27; lazily initializes global instance via sync.Once (once.Do)
+                    </div>
+                    <div style="margin-top: 6px; font-size: 12px; color: #64748b;">
+                        <i class="map marker alternate icon"></i> /Volumes/External/Code/DPX-Go/examples/go_samples/singleton_db.go:16:1
+                    </div>
+                    <div class="evidence-box">
+                        <strong>Evidence Trail (1 heuristics):</strong>
+                        
+                    <div style="margin-top: 4px;">
+                        <span style="color: #10b981; font-weight: 600;">+85%</span>
+                        <span class="code-pill">[SINGLETON_SYNC_ONCE]</span>
+                        Thread-safe Singleton accessor &#x27;GetDatabaseInstance()&#x27; lazily initializes global instance via sync.Once (once.Do) <span class='code-pill'>/Volumes/External/Code/DPX-Go/examples/go_samples/singleton_db.go:16:1</span>
+                    </div>
+                    
+                    </div>
+                </div>
+                
+                <div class="pattern-card" data-category="structural" data-pattern="decorator" data-status="pattern" data-target="logginghandlerdecorator">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <span class="ui mini blue label">#8 DECORATOR</span>
+                            <strong style="font-size: 16px; margin-left: 8px; color: #f8fafc;">LoggingHandlerDecorator</strong>
+                            <span style="color: #94a3b8; font-size: 13px;">(decorator_struct)</span>
+                        </div>
+                        <div>
+                            <span class="ui mini label" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4);">
+                                67% [MEDIUM]
+                            </span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 10px; font-size: 13px; color: #cbd5e1;">
+                        Struct &#x27;LoggingHandlerDecorator&#x27; follows Decorator / Middleware naming convention
+                    </div>
+                    <div style="margin-top: 6px; font-size: 12px; color: #64748b;">
+                        <i class="map marker alternate icon"></i> /Volumes/External/Code/DPX-Go/examples/go_samples/middleware_chain.go:18:1
+                    </div>
+                    <div class="evidence-box">
+                        <strong>Evidence Trail (2 heuristics):</strong>
+                        
+                    <div style="margin-top: 4px;">
+                        <span style="color: #10b981; font-weight: 600;">+35%</span>
+                        <span class="code-pill">[DECORATOR_NAMING]</span>
+                        Struct &#x27;LoggingHandlerDecorator&#x27; follows Decorator / Middleware naming convention <span class='code-pill'>/Volumes/External/Code/DPX-Go/examples/go_samples/middleware_chain.go:18:1</span>
+                    </div>
+                    
+                    <div style="margin-top: 4px;">
+                        <span style="color: #10b981; font-weight: 600;">+50%</span>
+                        <span class="code-pill">[DECORATOR_WRAPS_COMPONENT]</span>
+                        Wraps inner component &#x27;next: http.Handler&#x27; to decorate behavior <span class='code-pill'>/Volumes/External/Code/DPX-Go/examples/go_samples/middleware_chain.go:18:1</span>
+                    </div>
+                    
+                    </div>
+                </div>
+                
+                <div class="pattern-card" data-category="behavioral" data-pattern="observer" data-status="pattern" data-target="eventhub">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <span class="ui mini violet label">#9 OBSERVER</span>
+                            <strong style="font-size: 16px; margin-left: 8px; color: #f8fafc;">EventHub</strong>
+                            <span style="color: #94a3b8; font-size: 13px;">(observer_struct)</span>
+                        </div>
+                        <div>
+                            <span class="ui mini label" style="background: rgba(167, 139, 250, 0.15); color: #a78bfa; border: 1px solid rgba(167, 139, 250, 0.4);">
+                                85% [VERY_HIGH]
+                            </span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 10px; font-size: 13px; color: #cbd5e1;">
+                        Struct &#x27;EventHub&#x27; follows Observer / Event Bus naming convention
+                    </div>
+                    <div style="margin-top: 6px; font-size: 12px; color: #64748b;">
+                        <i class="map marker alternate icon"></i> /Volumes/External/Code/DPX-Go/examples/go_samples/observer_hub.go:8:1
+                    </div>
+                    <div class="evidence-box">
+                        <strong>Evidence Trail (3 heuristics):</strong>
+                        
+                    <div style="margin-top: 4px;">
+                        <span style="color: #10b981; font-weight: 600;">+35%</span>
+                        <span class="code-pill">[OBSERVER_NAMING]</span>
+                        Struct &#x27;EventHub&#x27; follows Observer / Event Bus naming convention <span class='code-pill'>/Volumes/External/Code/DPX-Go/examples/go_samples/observer_hub.go:8:1</span>
+                    </div>
+                    
+                    <div style="margin-top: 4px;">
+                        <span style="color: #10b981; font-weight: 600;">+60%</span>
+                        <span class="code-pill">[OBSERVER_LISTENER_CHANNELS]</span>
+                        Maintains multi-subscriber dispatch channels/listeners &#x27;listeners: map[string][]chan Event&#x27; <span class='code-pill'>/Volumes/External/Code/DPX-Go/examples/go_samples/observer_hub.go:8:1</span>
+                    </div>
+                    
+                    <div style="margin-top: 4px;">
+                        <span style="color: #10b981; font-weight: 600;">+45%</span>
+                        <span class="code-pill">[OBSERVER_DISPATCH_METHODS]</span>
+                        Provides observer subscription/broadcast method(s) (Subscribe, Publish) <span class='code-pill'>/Volumes/External/Code/DPX-Go/examples/go_samples/observer_hub.go:18:1</span>
+                    </div>
+                    
+                    </div>
+                </div>
+                
+                <div class="pattern-card" data-category="behavioral" data-pattern="chain_of_responsibility" data-status="pattern" data-target="middleware">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <span class="ui mini violet label">#10 CHAIN_OF_RESPONSIBILITY</span>
+                            <strong style="font-size: 16px; margin-left: 8px; color: #f8fafc;">Middleware</strong>
+                            <span style="color: #94a3b8; font-size: 13px;">(middleware_type)</span>
+                        </div>
+                        <div>
+                            <span class="ui mini label" style="background: rgba(167, 139, 250, 0.15); color: #a78bfa; border: 1px solid rgba(167, 139, 250, 0.4);">
+                                75% [HIGH]
+                            </span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 10px; font-size: 13px; color: #cbd5e1;">
+                        Type &#x27;Middleware&#x27; (func(http.Handler) http.Handler) implements Chain of Responsibility middleware pipeline wrapper
+                    </div>
+                    <div style="margin-top: 6px; font-size: 12px; color: #64748b;">
+                        <i class="map marker alternate icon"></i> /Volumes/External/Code/DPX-Go/examples/go_samples/middleware_chain.go:8:1
+                    </div>
+                    <div class="evidence-box">
+                        <strong>Evidence Trail (1 heuristics):</strong>
+                        
+                    <div style="margin-top: 4px;">
+                        <span style="color: #10b981; font-weight: 600;">+75%</span>
+                        <span class="code-pill">[CHAIN_OF_RESPONSIBILITY_MIDDLEWARE_TYPE]</span>
+                        Type &#x27;Middleware&#x27; (func(http.Handler) http.Handler) implements Chain of Responsibility middleware pipeline wrapper <span class='code-pill'>/Volumes/External/Code/DPX-Go/examples/go_samples/middleware_chain.go:8:1</span>
+                    </div>
+                    
+                    </div>
+                </div>
+                
+                <div class="pattern-card" data-category="behavioral" data-pattern="mediator" data-status="pattern" data-target="eventhub">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <span class="ui mini violet label">#11 MEDIATOR</span>
+                            <strong style="font-size: 16px; margin-left: 8px; color: #f8fafc;">EventHub</strong>
+                            <span style="color: #94a3b8; font-size: 13px;">(mediator_struct)</span>
+                        </div>
+                        <div>
+                            <span class="ui mini label" style="background: rgba(167, 139, 250, 0.15); color: #a78bfa; border: 1px solid rgba(167, 139, 250, 0.4);">
+                                55% [MEDIUM]
+                            </span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 10px; font-size: 13px; color: #cbd5e1;">
+                        Maintains decoupled participant registry &#x27;listeners: map[string][]chan Event&#x27;
+                    </div>
+                    <div style="margin-top: 6px; font-size: 12px; color: #64748b;">
+                        <i class="map marker alternate icon"></i> /Volumes/External/Code/DPX-Go/examples/go_samples/observer_hub.go:8:1
+                    </div>
+                    <div class="evidence-box">
+                        <strong>Evidence Trail (1 heuristics):</strong>
+                        
+                    <div style="margin-top: 4px;">
+                        <span style="color: #10b981; font-weight: 600;">+55%</span>
+                        <span class="code-pill">[MEDIATOR_PARTICIPANTS_MAP]</span>
+                        Maintains decoupled participant registry &#x27;listeners: map[string][]chan Event&#x27; <span class='code-pill'>/Volumes/External/Code/DPX-Go/examples/go_samples/observer_hub.go:8:1</span>
+                    </div>
+                    
+                    </div>
+                </div>
+                
+                <div class="pattern-card" data-category="concurrency" data-pattern="pipeline" data-status="pattern" data-target="squarer">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <span class="ui mini olive label">#12 PIPELINE</span>
+                            <strong style="font-size: 16px; margin-left: 8px; color: #f8fafc;">Squarer</strong>
+                            <span style="color: #94a3b8; font-size: 13px;">(pipeline_stage_function)</span>
+                        </div>
+                        <div>
+                            <span class="ui mini label" style="background: rgba(132, 204, 22, 0.15); color: #a3e635; border: 1px solid rgba(132, 204, 22, 0.4);">
+                                85% [VERY_HIGH]
+                            </span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 10px; font-size: 13px; color: #cbd5e1;">
+                        Function &#x27;Squarer&#x27; implements idiomatic Go Pipeline stage streaming data from input channel into output channel
+                    </div>
+                    <div style="margin-top: 6px; font-size: 12px; color: #64748b;">
+                        <i class="map marker alternate icon"></i> /Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go:23:1
+                    </div>
+                    <div class="evidence-box">
+                        <strong>Evidence Trail (1 heuristics):</strong>
+                        
+                    <div style="margin-top: 4px;">
+                        <span style="color: #10b981; font-weight: 600;">+85%</span>
+                        <span class="code-pill">[PIPELINE_CHANNEL_STAGE]</span>
+                        Function &#x27;Squarer&#x27; implements idiomatic Go Pipeline stage streaming data from input channel into output channel <span class='code-pill'>/Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go:23:1</span>
+                    </div>
+                    
+                    </div>
+                </div>
+                
+                <div class="pattern-card" data-category="concurrency" data-pattern="pipeline" data-status="pattern" data-target="mergefanin">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <span class="ui mini olive label">#13 PIPELINE</span>
+                            <strong style="font-size: 16px; margin-left: 8px; color: #f8fafc;">MergeFanIn</strong>
+                            <span style="color: #94a3b8; font-size: 13px;">(pipeline_stage_function)</span>
+                        </div>
+                        <div>
+                            <span class="ui mini label" style="background: rgba(132, 204, 22, 0.15); color: #a3e635; border: 1px solid rgba(132, 204, 22, 0.4);">
+                                85% [VERY_HIGH]
+                            </span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 10px; font-size: 13px; color: #cbd5e1;">
+                        Function &#x27;MergeFanIn&#x27; implements idiomatic Go Pipeline stage streaming data from input channel into output channel
+                    </div>
+                    <div style="margin-top: 6px; font-size: 12px; color: #64748b;">
+                        <i class="map marker alternate icon"></i> /Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go:38:1
+                    </div>
+                    <div class="evidence-box">
+                        <strong>Evidence Trail (1 heuristics):</strong>
+                        
+                    <div style="margin-top: 4px;">
+                        <span style="color: #10b981; font-weight: 600;">+85%</span>
+                        <span class="code-pill">[PIPELINE_CHANNEL_STAGE]</span>
+                        Function &#x27;MergeFanIn&#x27; implements idiomatic Go Pipeline stage streaming data from input channel into output channel <span class='code-pill'>/Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go:38:1</span>
+                    </div>
+                    
+                    </div>
+                </div>
+                
+                <div class="pattern-card" data-category="concurrency" data-pattern="fan_out_fan_in" data-status="pattern" data-target="mergefanin">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <span class="ui mini olive label">#14 FAN_OUT_FAN_IN</span>
+                            <strong style="font-size: 16px; margin-left: 8px; color: #f8fafc;">MergeFanIn</strong>
+                            <span style="color: #94a3b8; font-size: 13px;">(fan_in_function)</span>
+                        </div>
+                        <div>
+                            <span class="ui mini label" style="background: rgba(132, 204, 22, 0.15); color: #a3e635; border: 1px solid rgba(132, 204, 22, 0.4);">
+                                85% [VERY_HIGH]
+                            </span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 10px; font-size: 13px; color: #cbd5e1;">
+                        Function &#x27;MergeFanIn&#x27; implements Fan-In channel multiplexer using sync.WaitGroup to merge multiple concurrent streams into single output channel
+                    </div>
+                    <div style="margin-top: 6px; font-size: 12px; color: #64748b;">
+                        <i class="map marker alternate icon"></i> /Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go:38:1
+                    </div>
+                    <div class="evidence-box">
+                        <strong>Evidence Trail (1 heuristics):</strong>
+                        
+                    <div style="margin-top: 4px;">
+                        <span style="color: #10b981; font-weight: 600;">+85%</span>
+                        <span class="code-pill">[FAN_IN_CHANNEL_MERGE]</span>
+                        Function &#x27;MergeFanIn&#x27; implements Fan-In channel multiplexer using sync.WaitGroup to merge multiple concurrent streams into single output channel <span class='code-pill'>/Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go:38:1</span>
+                    </div>
+                    
+                    </div>
+                </div>
+                
+                <div class="pattern-card" data-category="concurrency" data-pattern="worker_pool" data-status="pattern" data-target="startworkerpool">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <span class="ui mini olive label">#15 WORKER_POOL</span>
+                            <strong style="font-size: 16px; margin-left: 8px; color: #f8fafc;">StartWorkerPool</strong>
+                            <span style="color: #94a3b8; font-size: 13px;">(worker_pool_function)</span>
+                        </div>
+                        <div>
+                            <span class="ui mini label" style="background: rgba(132, 204, 22, 0.15); color: #a3e635; border: 1px solid rgba(132, 204, 22, 0.4);">
+                                80% [HIGH]
+                            </span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 10px; font-size: 13px; color: #cbd5e1;">
+                        Function &#x27;StartWorkerPool&#x27; implements Worker Pool pattern by spawning a fixed pool of worker goroutines over a shared jobs channel
+                    </div>
+                    <div style="margin-top: 6px; font-size: 12px; color: #64748b;">
+                        <i class="map marker alternate icon"></i> /Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go:66:1
+                    </div>
+                    <div class="evidence-box">
+                        <strong>Evidence Trail (1 heuristics):</strong>
+                        
+                    <div style="margin-top: 4px;">
+                        <span style="color: #10b981; font-weight: 600;">+80%</span>
+                        <span class="code-pill">[WORKER_POOL_SPAWNER]</span>
+                        Function &#x27;StartWorkerPool&#x27; implements Worker Pool pattern by spawning a fixed pool of worker goroutines over a shared jobs channel <span class='code-pill'>/Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go:66:1</span>
+                    </div>
+                    
+                    </div>
+                </div>
+                
+                <div class="pattern-card" data-category="concurrency" data-pattern="generator" data-status="pattern" data-target="generator">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <span class="ui mini olive label">#16 GENERATOR</span>
+                            <strong style="font-size: 16px; margin-left: 8px; color: #f8fafc;">Generator</strong>
+                            <span style="color: #94a3b8; font-size: 13px;">(generator_function)</span>
+                        </div>
+                        <div>
+                            <span class="ui mini label" style="background: rgba(132, 204, 22, 0.15); color: #a3e635; border: 1px solid rgba(132, 204, 22, 0.4);">
+                                80% [HIGH]
+                            </span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 10px; font-size: 13px; color: #cbd5e1;">
+                        Function &#x27;Generator&#x27; implements idiomatic Go Generator pattern spawning a producer goroutine and returning receive-only channel &#x27;&lt;-chan int&#x27;
+                    </div>
+                    <div style="margin-top: 6px; font-size: 12px; color: #64748b;">
+                        <i class="map marker alternate icon"></i> /Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go:8:1
+                    </div>
+                    <div class="evidence-box">
+                        <strong>Evidence Trail (1 heuristics):</strong>
+                        
+                    <div style="margin-top: 4px;">
+                        <span style="color: #10b981; font-weight: 600;">+80%</span>
+                        <span class="code-pill">[GENERATOR_PRODUCER_GOROUTINE]</span>
+                        Function &#x27;Generator&#x27; implements idiomatic Go Generator pattern spawning a producer goroutine and returning receive-only channel &#x27;&lt;-chan int&#x27; <span class='code-pill'>/Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go:8:1</span>
+                    </div>
+                    
+                    </div>
+                </div>
+                
+                <div class="pattern-card" data-category="idiom" data-pattern="context_propagation" data-status="pattern" data-target="generator">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <span class="ui mini orange label">#17 CONTEXT_PROPAGATION</span>
+                            <strong style="font-size: 16px; margin-left: 8px; color: #f8fafc;">Generator</strong>
+                            <span style="color: #94a3b8; font-size: 13px;">(function)</span>
+                        </div>
+                        <div>
+                            <span class="ui mini label" style="background: rgba(251, 146, 60, 0.15); color: #fb923c; border: 1px solid rgba(251, 146, 60, 0.4);">
+                                70% [HIGH]
+                            </span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 10px; font-size: 13px; color: #cbd5e1;">
+                        Function &#x27;Generator&#x27; adheres to idiomatic Go context propagation passing &#x27;ctx: context.Context&#x27; as first parameter
+                    </div>
+                    <div style="margin-top: 6px; font-size: 12px; color: #64748b;">
+                        <i class="map marker alternate icon"></i> /Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go:8:1
+                    </div>
+                    <div class="evidence-box">
+                        <strong>Evidence Trail (1 heuristics):</strong>
+                        
+                    <div style="margin-top: 4px;">
+                        <span style="color: #10b981; font-weight: 600;">+70%</span>
+                        <span class="code-pill">[CONTEXT_FIRST_PARAM]</span>
+                        Function &#x27;Generator&#x27; adheres to idiomatic Go context propagation passing &#x27;ctx: context.Context&#x27; as first parameter <span class='code-pill'>/Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go:8:1</span>
+                    </div>
+                    
+                    </div>
+                </div>
+                
+                <div class="pattern-card" data-category="idiom" data-pattern="context_propagation" data-status="pattern" data-target="squarer">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <span class="ui mini orange label">#18 CONTEXT_PROPAGATION</span>
+                            <strong style="font-size: 16px; margin-left: 8px; color: #f8fafc;">Squarer</strong>
+                            <span style="color: #94a3b8; font-size: 13px;">(function)</span>
+                        </div>
+                        <div>
+                            <span class="ui mini label" style="background: rgba(251, 146, 60, 0.15); color: #fb923c; border: 1px solid rgba(251, 146, 60, 0.4);">
+                                70% [HIGH]
+                            </span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 10px; font-size: 13px; color: #cbd5e1;">
+                        Function &#x27;Squarer&#x27; adheres to idiomatic Go context propagation passing &#x27;ctx: context.Context&#x27; as first parameter
+                    </div>
+                    <div style="margin-top: 6px; font-size: 12px; color: #64748b;">
+                        <i class="map marker alternate icon"></i> /Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go:23:1
+                    </div>
+                    <div class="evidence-box">
+                        <strong>Evidence Trail (1 heuristics):</strong>
+                        
+                    <div style="margin-top: 4px;">
+                        <span style="color: #10b981; font-weight: 600;">+70%</span>
+                        <span class="code-pill">[CONTEXT_FIRST_PARAM]</span>
+                        Function &#x27;Squarer&#x27; adheres to idiomatic Go context propagation passing &#x27;ctx: context.Context&#x27; as first parameter <span class='code-pill'>/Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go:23:1</span>
+                    </div>
+                    
+                    </div>
+                </div>
+                
+                <div class="pattern-card" data-category="idiom" data-pattern="context_propagation" data-status="pattern" data-target="mergefanin">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <span class="ui mini orange label">#19 CONTEXT_PROPAGATION</span>
+                            <strong style="font-size: 16px; margin-left: 8px; color: #f8fafc;">MergeFanIn</strong>
+                            <span style="color: #94a3b8; font-size: 13px;">(function)</span>
+                        </div>
+                        <div>
+                            <span class="ui mini label" style="background: rgba(251, 146, 60, 0.15); color: #fb923c; border: 1px solid rgba(251, 146, 60, 0.4);">
+                                70% [HIGH]
+                            </span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 10px; font-size: 13px; color: #cbd5e1;">
+                        Function &#x27;MergeFanIn&#x27; adheres to idiomatic Go context propagation passing &#x27;ctx: context.Context&#x27; as first parameter
+                    </div>
+                    <div style="margin-top: 6px; font-size: 12px; color: #64748b;">
+                        <i class="map marker alternate icon"></i> /Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go:38:1
+                    </div>
+                    <div class="evidence-box">
+                        <strong>Evidence Trail (1 heuristics):</strong>
+                        
+                    <div style="margin-top: 4px;">
+                        <span style="color: #10b981; font-weight: 600;">+70%</span>
+                        <span class="code-pill">[CONTEXT_FIRST_PARAM]</span>
+                        Function &#x27;MergeFanIn&#x27; adheres to idiomatic Go context propagation passing &#x27;ctx: context.Context&#x27; as first parameter <span class='code-pill'>/Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go:38:1</span>
+                    </div>
+                    
+                    </div>
+                </div>
+                
+                <div class="pattern-card" data-category="idiom" data-pattern="context_propagation" data-status="pattern" data-target="startworkerpool">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <span class="ui mini orange label">#20 CONTEXT_PROPAGATION</span>
+                            <strong style="font-size: 16px; margin-left: 8px; color: #f8fafc;">StartWorkerPool</strong>
+                            <span style="color: #94a3b8; font-size: 13px;">(function)</span>
+                        </div>
+                        <div>
+                            <span class="ui mini label" style="background: rgba(251, 146, 60, 0.15); color: #fb923c; border: 1px solid rgba(251, 146, 60, 0.4);">
+                                70% [HIGH]
+                            </span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 10px; font-size: 13px; color: #cbd5e1;">
+                        Function &#x27;StartWorkerPool&#x27; adheres to idiomatic Go context propagation passing &#x27;ctx: context.Context&#x27; as first parameter
+                    </div>
+                    <div style="margin-top: 6px; font-size: 12px; color: #64748b;">
+                        <i class="map marker alternate icon"></i> /Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go:66:1
+                    </div>
+                    <div class="evidence-box">
+                        <strong>Evidence Trail (1 heuristics):</strong>
+                        
+                    <div style="margin-top: 4px;">
+                        <span style="color: #10b981; font-weight: 600;">+70%</span>
+                        <span class="code-pill">[CONTEXT_FIRST_PARAM]</span>
+                        Function &#x27;StartWorkerPool&#x27; adheres to idiomatic Go context propagation passing &#x27;ctx: context.Context&#x27; as first parameter <span class='code-pill'>/Volumes/External/Code/DPX-Go/examples/go_samples/concurrency_pipeline.go:66:1</span>
+                    </div>
+                    
+                    </div>
+                </div>
+                
+                <div class="pattern-card" data-category="idiom" data-pattern="context_propagation" data-status="pattern" data-target="start">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <span class="ui mini orange label">#21 CONTEXT_PROPAGATION</span>
+                            <strong style="font-size: 16px; margin-left: 8px; color: #f8fafc;">Start</strong>
+                            <span style="color: #94a3b8; font-size: 13px;">(function)</span>
+                        </div>
+                        <div>
+                            <span class="ui mini label" style="background: rgba(251, 146, 60, 0.15); color: #fb923c; border: 1px solid rgba(251, 146, 60, 0.4);">
+                                70% [HIGH]
+                            </span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 10px; font-size: 13px; color: #cbd5e1;">
+                        Function &#x27;Start&#x27; adheres to idiomatic Go context propagation passing &#x27;ctx: context.Context&#x27; as first parameter
+                    </div>
+                    <div style="margin-top: 6px; font-size: 12px; color: #64748b;">
+                        <i class="map marker alternate icon"></i> /Volumes/External/Code/DPX-Go/examples/go_samples/options_server.go:47:1
+                    </div>
+                    <div class="evidence-box">
+                        <strong>Evidence Trail (1 heuristics):</strong>
+                        
+                    <div style="margin-top: 4px;">
+                        <span style="color: #10b981; font-weight: 600;">+70%</span>
+                        <span class="code-pill">[CONTEXT_FIRST_PARAM]</span>
+                        Function &#x27;Start&#x27; adheres to idiomatic Go context propagation passing &#x27;ctx: context.Context&#x27; as first parameter <span class='code-pill'>/Volumes/External/Code/DPX-Go/examples/go_samples/options_server.go:47:1</span>
+                    </div>
+                    
+                    </div>
+                </div>
+                
+                <div class="pattern-card" data-category="idiom" data-pattern="context_propagation" data-status="pattern" data-target="processdatastream">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <span class="ui mini orange label">#22 CONTEXT_PROPAGATION</span>
+                            <strong style="font-size: 16px; margin-left: 8px; color: #f8fafc;">ProcessDataStream</strong>
+                            <span style="color: #94a3b8; font-size: 13px;">(function)</span>
+                        </div>
+                        <div>
+                            <span class="ui mini label" style="background: rgba(251, 146, 60, 0.15); color: #fb923c; border: 1px solid rgba(251, 146, 60, 0.4);">
+                                70% [HIGH]
+                            </span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 10px; font-size: 13px; color: #cbd5e1;">
+                        Function &#x27;ProcessDataStream&#x27; adheres to idiomatic Go context propagation passing &#x27;ctx: context.Context&#x27; as first parameter
+                    </div>
+                    <div style="margin-top: 6px; font-size: 12px; color: #64748b;">
+                        <i class="map marker alternate icon"></i> /Volumes/External/Code/DPX-Go/examples/go_samples/principles_and_smells.go:57:1
+                    </div>
+                    <div class="evidence-box">
+                        <strong>Evidence Trail (1 heuristics):</strong>
+                        
+                    <div style="margin-top: 4px;">
+                        <span style="color: #10b981; font-weight: 600;">+70%</span>
+                        <span class="code-pill">[CONTEXT_FIRST_PARAM]</span>
+                        Function &#x27;ProcessDataStream&#x27; adheres to idiomatic Go context propagation passing &#x27;ctx: context.Context&#x27; as first parameter <span class='code-pill'>/Volumes/External/Code/DPX-Go/examples/go_samples/principles_and_smells.go:57:1</span>
+                    </div>
+                    
+                    </div>
+                </div>
+                
+                <div class="pattern-card" data-category="principle" data-pattern="single_responsibility" data-status="violation" data-target="godmanager">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <span class="ui mini pink label">#23 SINGLE_RESPONSIBILITY</span>
+                            <strong style="font-size: 16px; margin-left: 8px; color: #f8fafc;">GodManager</strong>
+                            <span style="color: #94a3b8; font-size: 13px;">(god_struct)</span>
+                        </div>
+                        <div>
+                            <span class="ui mini label" style="background: rgba(244, 114, 182, 0.15); color: #f472b6; border: 1px solid rgba(244, 114, 182, 0.4);">
+                                85% [VERY_HIGH]
+                            </span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 10px; font-size: 13px; color: #cbd5e1;">
+                        SRP Violation (God Struct): Struct &#x27;GodManager&#x27; has 16 methods and 13 fields, indicating mixed domain responsibilities
+                    </div>
+                    <div style="margin-top: 6px; font-size: 12px; color: #64748b;">
+                        <i class="map marker alternate icon"></i> /Volumes/External/Code/DPX-Go/examples/go_samples/principles_and_smells.go:23:1
+                    </div>
+                    <div class="evidence-box">
+                        <strong>Evidence Trail (1 heuristics):</strong>
+                        
+                    <div style="margin-top: 4px;">
+                        <span style="color: #10b981; font-weight: 600;">+85%</span>
+                        <span class="code-pill">[SRP_GOD_STRUCT]</span>
+                        SRP Violation (God Struct): Struct &#x27;GodManager&#x27; has 16 methods and 13 fields, indicating mixed domain responsibilities <span class='code-pill'>/Volumes/External/Code/DPX-Go/examples/go_samples/principles_and_smells.go:23:1</span>
+                    </div>
+                    
+                    </div>
+                </div>
+                
+                <div class="pattern-card" data-category="principle" data-pattern="interface_pollution" data-status="violation" data-target="megamonolithicrepository">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <span class="ui mini pink label">#24 INTERFACE_POLLUTION</span>
+                            <strong style="font-size: 16px; margin-left: 8px; color: #f8fafc;">MegaMonolithicRepository</strong>
+                            <span style="color: #94a3b8; font-size: 13px;">(fat_interface)</span>
+                        </div>
+                        <div>
+                            <span class="ui mini label" style="background: rgba(244, 114, 182, 0.15); color: #f472b6; border: 1px solid rgba(244, 114, 182, 0.4);">
+                                80% [HIGH]
+                            </span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 10px; font-size: 13px; color: #cbd5e1;">
+                        Interface Pollution (ISP Violation): Interface &#x27;MegaMonolithicRepository&#x27; declares 10 methods; idiomatic Go encourages small, single-purpose interfaces (1-2 methods)
+                    </div>
+                    <div style="margin-top: 6px; font-size: 12px; color: #64748b;">
+                        <i class="map marker alternate icon"></i> /Volumes/External/Code/DPX-Go/examples/go_samples/principles_and_smells.go:9:1
+                    </div>
+                    <div class="evidence-box">
+                        <strong>Evidence Trail (1 heuristics):</strong>
+                        
+                    <div style="margin-top: 4px;">
+                        <span style="color: #10b981; font-weight: 600;">+80%</span>
+                        <span class="code-pill">[INTERFACE_POLLUTION_FAT_INTERFACE]</span>
+                        Interface Pollution (ISP Violation): Interface &#x27;MegaMonolithicRepository&#x27; declares 10 methods; idiomatic Go encourages small, single-purpose interfaces (1-2 methods) <span class='code-pill'>/Volumes/External/Code/DPX-Go/examples/go_samples/principles_and_smells.go:9:1</span>
+                    </div>
+                    
+                    </div>
+                </div>
+                
+                <div class="pattern-card" data-category="principle" data-pattern="dependency_inversion" data-status="adherence" data-target="processdatastream">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <span class="ui mini pink label">#25 DEPENDENCY_INVERSION</span>
+                            <strong style="font-size: 16px; margin-left: 8px; color: #f8fafc;">ProcessDataStream</strong>
+                            <span style="color: #94a3b8; font-size: 13px;">(function)</span>
+                        </div>
+                        <div>
+                            <span class="ui mini label" style="background: rgba(244, 114, 182, 0.15); color: #f472b6; border: 1px solid rgba(244, 114, 182, 0.4);">
+                                75% [HIGH]
+                            </span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 10px; font-size: 13px; color: #cbd5e1;">
+                        DIP Adherence: Function &#x27;ProcessDataStream&#x27; depends on interface abstraction(s) (ctx context.Context, r io.Reader) rather than concrete struct pointers
+                    </div>
+                    <div style="margin-top: 6px; font-size: 12px; color: #64748b;">
+                        <i class="map marker alternate icon"></i> /Volumes/External/Code/DPX-Go/examples/go_samples/principles_and_smells.go:57:1
+                    </div>
+                    <div class="evidence-box">
+                        <strong>Evidence Trail (1 heuristics):</strong>
+                        
+                    <div style="margin-top: 4px;">
+                        <span style="color: #10b981; font-weight: 600;">+75%</span>
+                        <span class="code-pill">[DIP_INTERFACE_PARAMETER]</span>
+                        DIP Adherence: Function &#x27;ProcessDataStream&#x27; depends on interface abstraction(s) (ctx context.Context, r io.Reader) rather than concrete struct pointers <span class='code-pill'>/Volumes/External/Code/DPX-Go/examples/go_samples/principles_and_smells.go:57:1</span>
+                    </div>
+                    
+                    </div>
+                </div>
+                
+                <div class="pattern-card" data-category="safety" data-pattern="goroutine_leak_risk" data-status="violation" data-target="leakybackgroundworker">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <span class="ui mini red label">#26 GOROUTINE_LEAK_RISK</span>
+                            <strong style="font-size: 16px; margin-left: 8px; color: #f8fafc;">LeakyBackgroundWorker</strong>
+                            <span style="color: #94a3b8; font-size: 13px;">(goroutine_leak)</span>
+                        </div>
+                        <div>
+                            <span class="ui mini label" style="background: rgba(248, 113, 113, 0.15); color: #f87171; border: 1px solid rgba(248, 113, 113, 0.4);">
+                                80% [HIGH]
+                            </span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 10px; font-size: 13px; color: #cbd5e1;">
+                        Safety Audit (Goroutine Leak Risk): Function &#x27;LeakyBackgroundWorker&#x27; spawns an infinite goroutine loop without listening for &#x27;ctx.Done()&#x27; cancellation or a quit channel
+                    </div>
+                    <div style="margin-top: 6px; font-size: 12px; color: #64748b;">
+                        <i class="map marker alternate icon"></i> /Volumes/External/Code/DPX-Go/examples/go_samples/principles_and_smells.go:62:1
+                    </div>
+                    <div class="evidence-box">
+                        <strong>Evidence Trail (1 heuristics):</strong>
+                        
+                    <div style="margin-top: 4px;">
+                        <span style="color: #10b981; font-weight: 600;">+80%</span>
+                        <span class="code-pill">[GOROUTINE_LEAK_RISK]</span>
+                        Safety Audit (Goroutine Leak Risk): Function &#x27;LeakyBackgroundWorker&#x27; spawns an infinite goroutine loop without listening for &#x27;ctx.Done()&#x27; cancellation or a quit channel <span class='code-pill'>/Volumes/External/Code/DPX-Go/examples/go_samples/principles_and_smells.go:62:1</span>
+                    </div>
+                    
+                    </div>
+                </div>
+                
+                <div class="pattern-card" data-category="safety" data-pattern="unchecked_error" data-status="violation" data-target="baderrorhandler">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <span class="ui mini red label">#27 UNCHECKED_ERROR</span>
+                            <strong style="font-size: 16px; margin-left: 8px; color: #f8fafc;">BadErrorHandler</strong>
+                            <span style="color: #94a3b8; font-size: 13px;">(unchecked_error)</span>
+                        </div>
+                        <div>
+                            <span class="ui mini label" style="background: rgba(248, 113, 113, 0.15); color: #f87171; border: 1px solid rgba(248, 113, 113, 0.4);">
+                                75% [HIGH]
+                            </span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 10px; font-size: 13px; color: #cbd5e1;">
+                        Safety Audit (Unchecked Error): Function &#x27;BadErrorHandler&#x27; explicitly ignores returned error(s) (_ = w.Close(...); always check err != nil
+                    </div>
+                    <div style="margin-top: 6px; font-size: 12px; color: #64748b;">
+                        <i class="map marker alternate icon"></i> /Volumes/External/Code/DPX-Go/examples/go_samples/principles_and_smells.go:71:1
+                    </div>
+                    <div class="evidence-box">
+                        <strong>Evidence Trail (1 heuristics):</strong>
+                        
+                    <div style="margin-top: 4px;">
+                        <span style="color: #10b981; font-weight: 600;">+75%</span>
+                        <span class="code-pill">[UNCHECKED_ERROR_RETURN]</span>
+                        Safety Audit (Unchecked Error): Function &#x27;BadErrorHandler&#x27; explicitly ignores returned error(s) (_ = w.Close(...); always check err != nil <span class='code-pill'>/Volumes/External/Code/DPX-Go/examples/go_samples/principles_and_smells.go:71:1</span>
+                    </div>
+                    
+                    </div>
+                </div>
+                
+        </div>
+    </div>
+
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const cards = document.querySelectorAll('.pattern-card');
+        const categoryBtns = document.querySelectorAll('.cat-filter-btn');
+        const statusBtns = document.querySelectorAll('.status-filter-btn');
+        const noViolationsAlert = document.getElementById('noViolationsAlert');
+        const noResultsMessage = document.getElementById('noResultsMessage');
+
+        let selectedCategory = 'all';
+        let selectedStatus = 'all';
+        let hidePrinciples = false;
+
+        function togglePrinciplesVisibility() {
+            hidePrinciples = !hidePrinciples;
+            const btn = document.getElementById('principlesToggleBtn');
+            const btnText = document.getElementById('principlesToggleText');
+            if (hidePrinciples) {
+                btn.classList.remove('basic');
+                btn.classList.add('green');
+                btnText.textContent = 'Show SOLID & Principles';
+            } else {
+                btn.classList.remove('green');
+                btn.classList.add('basic');
+                btnText.textContent = 'Hide SOLID & Principles';
+            }
+            updateStatusCounts();
+            filterCards();
+        }
+
+        function updateStatusCounts() {
+            let total = 0, violations = 0, adherences = 0, patterns = 0;
+            cards.forEach(card => {
+                const category = card.dataset.category || '';
+                const status = card.dataset.status || '';
+                if (hidePrinciples && category === 'principle') {
+                    return;
+                }
+                if (selectedCategory === 'all' || category === selectedCategory) {
+                    total++;
+                    if (status === 'violation') violations++;
+                    if (status === 'adherence') adherences++;
+                    if (status === 'pattern') patterns++;
+                }
+            });
+            document.getElementById('statusCountAll').textContent = total;
+            document.getElementById('statusCountViolation').textContent = violations;
+            document.getElementById('statusCountAdherence').textContent = adherences;
+            document.getElementById('statusCountPattern').textContent = patterns;
+        }
+
+        function filterCards() {
+            const query = searchInput.value.toLowerCase();
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const text = card.textContent.toLowerCase();
+                const pattern = card.dataset.pattern || '';
+                const category = card.dataset.category || '';
+                const target = card.dataset.target || '';
+                const status = card.dataset.status || '';
+
+                if (hidePrinciples && category === 'principle') {
+                    card.style.display = 'none';
+                    return;
+                }
+
+                const matchesCategory = (selectedCategory === 'all' || category === selectedCategory);
+                const matchesStatus = (selectedStatus === 'all' || status === selectedStatus);
+                const matchesSearch = (!query || text.includes(query) || pattern.includes(query) || category.includes(query) || target.includes(query));
+
+                if (matchesCategory && matchesStatus && matchesSearch) {
+                    card.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            if (selectedStatus === 'violation' && visibleCount === 0) {
+                noViolationsAlert.style.display = 'flex';
+                noResultsMessage.style.display = 'none';
+            } else if (visibleCount === 0) {
+                noViolationsAlert.style.display = 'none';
+                noResultsMessage.style.display = 'block';
+            } else {
+                noViolationsAlert.style.display = 'none';
+                noResultsMessage.style.display = 'none';
+            }
+        }
+
+        searchInput.addEventListener('input', filterCards);
+
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                selectedCategory = btn.dataset.filter;
+                updateStatusCounts();
+                filterCards();
+            });
+        });
+
+        statusBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                statusBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                selectedStatus = btn.dataset.status;
+                filterCards();
+            });
+        });
+
+        function copyArchMapForLlm() {
+            const rawText = document.getElementById('llmArchMapRaw').value;
+            const btn = document.getElementById('copyLlmBtn');
+            const originalHtml = btn.innerHTML;
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(rawText).then(() => {
+                    btn.innerHTML = '<i class="check icon"></i> Copied to Clipboard!';
+                    setTimeout(() => { btn.innerHTML = originalHtml; }, 2000);
+                });
+            }
+        }
+
+        updateStatusCounts();
+    </script>
+</body>
+</html>
