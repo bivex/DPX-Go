@@ -11,8 +11,14 @@ from pattern_detector.domain.detection import DetectionReport
 class SourceProviderPort(Protocol):
     """Port for reading Go source files (.go) from filesystem or memory."""
 
-    def get_sources(self, target_path: str, extensions: list[str] | None = None) -> dict[str, str]:
+    def get_sources(
+        self,
+        target_path: str,
+        extensions: list[str] | None = None,
+        exclude_dirs: list[str] | None = None,
+    ) -> dict[str, str]:
         ...
+
 
 
 class ParserPort(Protocol):

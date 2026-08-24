@@ -97,6 +97,14 @@ def scan(
             help="Exclude SOLID principles and clean code rules from the report (GoF, Concurrency & Idioms only).",
         ),
     ] = False,
+    exclude: Annotated[
+        list[str] | None,
+        typer.Option(
+            "--exclude",
+            "-e",
+            help="Directory name(s) or relative paths to exclude from scanning (e.g. -e test -e benchmarks -e examples -e vendor).",
+        ),
+    ] = None,
     verbose: Annotated[
         bool,
         typer.Option(
@@ -117,8 +125,10 @@ def scan(
         output_markdown_path=markdown_output,
         output_sarif_path=sarif_output,
         include_principles=not no_principles,
+        exclude_dirs=exclude or [],
         verbose=verbose,
     )
+
 
     if llm:
         scanner = container.get_scanner()

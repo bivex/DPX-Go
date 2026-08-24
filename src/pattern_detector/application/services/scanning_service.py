@@ -40,7 +40,12 @@ class ScanningService(ScannerPort):
         options = options or ScanOptions()
         t0 = time.perf_counter()
 
-        sources = self._source_provider.get_sources(path, extensions=[".go"])
+        sources = self._source_provider.get_sources(
+            path,
+            extensions=[".go"],
+            exclude_dirs=options.exclude_dirs,
+        )
+
         code_model = self._parser.parse_sources(sources)
         code_model.project_path = path
 

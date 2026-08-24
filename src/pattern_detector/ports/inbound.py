@@ -22,7 +22,9 @@ class ScanOptions:
     output_markdown_path: str | None = None
     output_sarif_path: str | None = None
     include_principles: bool = True
+    exclude_dirs: list[str] = field(default_factory=list)
     verbose: bool = False
+
 
 
 class ScannerPort(Protocol):
