@@ -104,13 +104,13 @@ class NativeGoParserAdapter(ParserPort):
         aliases = {}
         # type Option func(*Server) or type Option[T any] func(*T)
         pattern = re.compile(
-            r"\btype\s+([a-zA-Z0-9_]+)(?:\[[^\]]+\])?\s+(func\s*\([^)]*\)[^{;\n]*|[a-zA-Z0-9_.*\[\]]+)",
+            r"\btype\s+([a-zA-Z0-9_]+)(?:\[[^\]]+\])?\s+([^{;\n]+)",
             re.MULTILINE,
         )
         for m in pattern.finditer(text):
             name = m.group(1)
             target = m.group(2).strip()
-            if target not in ("struct", "interface") and not target.startswith("struct{") and not target.startswith("interface{"):
+            if target and target not in ("struct", "interface") and not target.startswith("struct{") and not target.startswith("interface{"):
                 line_no = text[:m.start()].count("\n") + 1
                 loc = SourceLocation(file_path=file_path, line=line_no)
                 is_func = target.startswith("func(")

@@ -18,9 +18,9 @@ class ChainOfResponsibilityRule(BasePatternRule):
     def detect(self, model: CodeModel) -> list[Detection]:
         detections: list[Detection] = []
 
-        # 1. Functional Middleware: func(http.Handler) http.Handler
+        # 1. Functional Middleware: func(http.Handler) http.Handler or []func(http.Handler) http.Handler
         for alias in model.all_type_aliases():
-            if alias.is_func_type and "Handler" in alias.underlying_type and "func(" in alias.underlying_type:
+            if ("Handler" in alias.underlying_type or "Middleware" in alias.name or "Chain" in alias.name) and "func(" in alias.underlying_type:
                 evidences = [
                     Evidence(
                         description=f"Type '{alias.name}' ({alias.underlying_type}) implements Chain of Responsibility middleware pipeline wrapper",
